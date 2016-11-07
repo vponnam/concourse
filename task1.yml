@@ -9,4 +9,4 @@ inputs:
 - name: git-resource
 
 run:
-  path: git-resource-tutorial/task1.sh
+  path: git-resource/task1.sh
