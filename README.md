@@ -32,7 +32,7 @@ fly -v # should report current fly binary version
 
 Setting fly target
 
-fly --target <target-name> login  --concourse-url http://FIP:8080
+fly --target >>target-name login  --concourse-url http://FIP:8080
 fly -t tutorial sync
 
 can verify the target api 'cat ~/.flyrc'
