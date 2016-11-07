@@ -35,7 +35,7 @@ Setting fly target
 fly --target tutorial login  --concourse-url http://FIP:8080
 fly -t tutorial sync
 
-# can verify the target api 'cat ~/.flyrc'
+can verify the target api 'cat ~/.flyrc'
 
 Tutorial:
 https://github.com/starkandwayne/concourse-tutorial
