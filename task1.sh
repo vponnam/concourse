@@ -1,0 +1,1 @@
+echo "Hi this is from task1 script"
