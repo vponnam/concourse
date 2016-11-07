@@ -11,4 +11,4 @@ inputs:
 run:
 #  path: git-resource/task1.sh
   path: echo
-  args: [Hi Manu.. how's everything going :)]
+  args: [Hi Manu.. how's everything going]
