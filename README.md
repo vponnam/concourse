@@ -14,8 +14,8 @@ Concourse Manifest Properties
 
 Ref: https://concourse.ci/clusters-with-bosh.html#prepping-bosh
 
-Notes: No tsl certs for web
-       reserve IP's in cloud-config
+Notes: No tsl certs for web/n
+       reserve IP's in cloud-config/n
 
 Step 3:
 bosh deployment councourse.yml
