@@ -1,1 +1,1 @@
-echo "Content from task1 script"
+echo "I am from task1 script"
