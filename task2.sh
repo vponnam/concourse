@@ -1,4 +1,5 @@
 #!/bin/sh
 
 ls -lrt
-cat task1dir/some-task1-files
+echo "ker from task1 is $ker"
+cat task1-output/some-task1-files
