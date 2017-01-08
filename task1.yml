@@ -4,9 +4,9 @@ platform: linux
 image-resource:
   type: docker-image
   source: {repository: busybox}
-  
+
 inputs:
 - name: src-files
 
 run:
-  path: src-files/task1.sh	
+  path: src-files/task1.sh
