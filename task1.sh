@@ -2,8 +2,8 @@
 
 # mkdir task1-output
 
-ker=`uname -a` > task1-output/some-task1-files
-echo "$ker"
+ker=`uname -a`
+echo "$ker" > task1-output/some-task1-file
 
 ls task1-output/*
-cat task1-output/some-task1-files
+cat task1-output/some-task1-file
