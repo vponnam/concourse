@@ -1,4 +1,4 @@
 #!/bin/sh
 
-ls -lrt task1dir/*
+ls -lrt
 echo "$ker"
