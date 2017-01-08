@@ -1,7 +1,6 @@
 ---
-
 resources:
-- name: src-files
+- name: resource-src
   type: git
   source:
     uri: https://github.com/vponnam/concourse.git
@@ -10,8 +9,8 @@ jobs:
 - name: multi-tasks
   public: true
   plan:
-  - get: src-files
+  - get: resource-src
   - task: task1
-    file: src-files/task1.yml
+    file: resource-src/task1.yml
 #    task: task2
 #    file: src-files/task2.yml
