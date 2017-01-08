@@ -4,12 +4,10 @@ platform: linux
 image_resource:
   type: docker-image
   source: {repository: busybox}
-
+  
 inputs:
 - name: resource-src
-
-outputs:
 - name: task1-output
 
 run:
-  path: resource-src/task1.sh
+  path: resource-src/workout/1job-2tasks/task2.sh
