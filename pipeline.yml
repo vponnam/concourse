@@ -13,5 +13,5 @@ jobs:
     trigger: true
   - task: task1
     file: resource-src/task1.yml
-#    task: task2
-#    file: src-files/task2.yml
+    task: task2
+    file: src-files/task2.yml

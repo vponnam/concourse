@@ -1,4 +1,4 @@
 #!/bin/sh
 
-ls -ltr
-echo "I am from task1 script"
+ker=`uname -a`
+echo "$ker"

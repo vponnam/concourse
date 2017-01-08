@@ -8,5 +8,8 @@ image_resource:
 inputs:
 - name: resource-src
 
+outputs:
+- name: task1-output
+
 run:
   path: resource-src/task1.sh
