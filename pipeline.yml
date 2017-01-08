@@ -1,8 +1,8 @@
 ---
 
 resources:
+- name: src-files
   type: git
-  name: src-files
   source:
     uri: https://github.com/vponnam/concourse.git
 
