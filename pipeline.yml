@@ -1,14 +1,13 @@
 ---
-resources:
-- name: git-resource
-  type: git
-  source:
-    uri: https://github.com/vponnam/concourse.git
+
+inputs:
+- name: src-files
 
 jobs:
-- name: test-pipeline1
-  public: true
+- name: multi-tasks
   plan:
-  - get: git-resource
-  - task: task1
-    file: git-resource/task1.yml
+  - get: src-files
+    task: task1
+    file: src-files/task1.yml
+#    task: task2
+#    file: src-files/task2.yml
