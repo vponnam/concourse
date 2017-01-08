@@ -6,6 +6,7 @@ image_resource:
   source: {repository: busybox}
 
 inputs:
+<<<<<<< HEAD
 - name: git-resource
 outputs:
 - name: output-messages
@@ -13,3 +14,9 @@ run:
 #  path: git-resource/task1.sh
   path: echo
   args: [Hi All.. how's everything going]
+=======
+- name: resource-src
+
+run:
+  path: resource-src/task1.sh
+>>>>>>> dev2
