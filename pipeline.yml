@@ -1,13 +1,17 @@
 ---
 
-inputs:
-- name: src-files
+resources:
+  type: git
+  name: src-files
+  source:
+    uri: https://github.com/vponnam/concourse.git
 
 jobs:
 - name: multi-tasks
+  public: true
   plan:
   - get: src-files
-    task: task1
+  - task: task1
     file: src-files/task1.yml
 #    task: task2
 #    file: src-files/task2.yml
