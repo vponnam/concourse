@@ -14,4 +14,4 @@ jobs:
   - task: task1
     file: resource-src/task1.yml
     task: task2
-    file: src-files/task2.yml
+    file: resource-src/task2.yml
