@@ -2,5 +2,8 @@
 
 mkdir task1dir
 
-ker=`uname -a`
-echo "$ker" > task1dir/some-task1-files
+ker=`uname -a` > task1dir/some-task1-files
+echo "$ker"
+
+ls
+ls task1dir/*

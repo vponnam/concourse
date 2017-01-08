@@ -1,4 +1,4 @@
 #!/bin/sh
 
 ls -lrt
-echo "$ker"
+cat task1dir/some-task1-files
