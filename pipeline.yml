@@ -10,6 +10,7 @@ jobs:
   public: true
   plan:
   - get: resource-src
+    trigger: true
   - task: task1
     file: resource-src/task1.yml
 #    task: task2
