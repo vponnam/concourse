@@ -11,5 +11,11 @@ inputs:
 - name: compiled-src
 
 outputs:
-- name: com
+- name: compiled-src
 
+jobs:
+- name: push-job
+  plan:
+  - put: resource-deploy-web-app
+    params:
+    manifest: compiled-src/manifest.yml
