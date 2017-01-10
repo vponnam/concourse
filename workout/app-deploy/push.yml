@@ -3,16 +3,13 @@ platform: linux
 
 image_resource:
   type: docker-image
-  source: {repository: busybox}
+  source: {repository: concourse/concourse-ci}
   
 inputs:
 - name: resource-web-app
 - name: resource-deploy-web-app
 - name: compiled-src
 
-jobs:
-- name: push-job
-  plan:
-  - put: resource-deploy-web-app
-    params:
-    manifest: compiled-src/manifest.yml
+outputs:
+- name: com
+
