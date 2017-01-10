@@ -8,4 +8,6 @@ pwd
 ./gradlew assemble
 ls build/libs/*
 cd ..
-cp resource-web-app/* compiled-src/
+cp resource-web-app/. compiled-src/
+ls
+
