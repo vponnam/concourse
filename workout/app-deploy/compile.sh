@@ -1,8 +1,8 @@
 #!/bin/sh
 
 ls compile-scripts/*
-ls compiled-src/*
 
-cd resource-web-app/spring-music
+git clone https://github.com/cloudfoundry-samples/spring-music.git
+cd spring-music
 pwd
 ./gradlew assemble
