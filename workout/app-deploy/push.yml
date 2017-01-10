@@ -10,7 +10,7 @@ inputs:
 - name: resource-deploy-web-app
 - name: compiled-src
 
-run:
+jobs:
 - put: resource-deploy-web-app
   params:
     manifest: compiled-src/manifest.yml
