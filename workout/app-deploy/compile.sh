@@ -1,3 +1,6 @@
 #!/bin/sh
 pwd
-ls resource-web-app/*
+ls
+cd resource-weg-app
+ls
+./gradlew assemble
