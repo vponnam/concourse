@@ -11,6 +11,8 @@ inputs:
 - name: compiled-src
 
 jobs:
-- put: resource-deploy-web-app
-  params:
+- name: push-job
+  plan:
+  - put: resource-deploy-web-app
+    params:
     manifest: compiled-src/manifest.yml
