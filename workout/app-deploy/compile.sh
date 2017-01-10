@@ -5,4 +5,4 @@ cd resource-web-app
 ls
 pwd
 ./gradlew assemble
-ls compiled-src
+ls resource-web-app
