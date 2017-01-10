@@ -14,4 +14,3 @@ outputs:
 
 run:
   path: compile-scripts/workout/app-deploy/compile.sh
-	  
