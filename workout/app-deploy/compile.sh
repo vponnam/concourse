@@ -1,7 +1,7 @@
 #!/bin/sh
 pwd
-mkdir compiled-src
 ls
+mkdir compiled-src
 cd resource-web-app
 ls
 pwd
