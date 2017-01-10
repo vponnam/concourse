@@ -13,5 +13,5 @@ outputs:
 - name: compiled-src
 
 run:
-  path: compile-scripts/compile.sh
+  path: compile-scripts/workout/app-deploy/compile.sh
 	  
