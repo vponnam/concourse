@@ -27,6 +27,6 @@ git config --global user.name "concourse"
 git add .
 git commit -m "Publishing outputs"
 
-git remote add origin https://github.com/vponnam/repo.git
+# git remote add origin https://github.com/vponnam/repo.git
 git push -u origin master
 
