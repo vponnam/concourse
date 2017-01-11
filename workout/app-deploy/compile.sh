@@ -12,7 +12,7 @@ cp -a resource-web-app/. compiled-src/
 ls compiled-src/*
 
 # publishing to git
-apt-get install git -y
+apt-get update && apt-get install git -y
 git clone git@github.com:vponnam/repo.git
 
 cd repo
