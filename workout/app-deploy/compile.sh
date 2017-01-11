@@ -13,7 +13,7 @@ ls compiled-src/*
 
 # publishing to git
 apt-get update && apt-get install git -y
-git clone git@github.com:vponnam/repo.git
+git clone https://github.com/vponnam/repo.git
 
 cd repo
 
