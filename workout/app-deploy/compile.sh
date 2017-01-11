@@ -1,4 +1,7 @@
 #!/bin/sh
+
+set -x
+
 pwd
 ls
 mkdir compiled-src
@@ -23,5 +26,6 @@ git config --global user.name "concourse"
 git add .
 git commit -m "Publishing outputs"
 
-git push
+git remote add origin https://github.com/vponnam/repo.git
+git push -u origin master
 
