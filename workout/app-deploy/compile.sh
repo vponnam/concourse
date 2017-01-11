@@ -1,5 +1,5 @@
 #!/bin/sh
-
+set -e
 set -x
 
 pwd
@@ -23,7 +23,7 @@ cd repo
 git config --global user.email "me@concourse.ci"
 git config --global user.name "concourse"
 
-git add .
+git add ../resource-web-app/.
 git commit -m "Publishing outputs"
 
 git remote add origin https://github.com/vponnam/repo.git
