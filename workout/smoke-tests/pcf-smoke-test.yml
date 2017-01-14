@@ -3,10 +3,10 @@ platform: linux
 
 image_resource: 
 - type: docker-image
-  source: {repository: repository: hedlund/gradlew}
+  source: {repository: hedlund/gradlew}
   
 inputs:
 - git-resrc
 
 run:
-  path: git-resrc/workout/smoke-tests/pcf-smoke-test.sh
+  path: src/workout/smoke-tests/pcf-smoke-test.sh
