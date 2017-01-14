@@ -6,8 +6,8 @@ image_resource:
   source: {repository: hedlund/gradlew}
   
 inputs:
-- src
-- deploy-src
+- name: src
+- name: deploy-src
 
 run:
   path: src/workout/smoke-tests/pcf-smoke-test.sh
