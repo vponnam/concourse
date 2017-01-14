@@ -19,8 +19,11 @@ cd ..
 dir=`pwd`
 printf "\nPresent working directory is $dir\n"
 #Create test org and space
-on=("stest-org")
-sn=("stest-space")
+
+#on=("stest-org")
+on={{cf-organization}}
+#sn=("stest-space")
+sn={{cf-space}}
 p1=$dir/spring-music/build/libs/spring-music.jar
 p2=$dir/traveler/agency/
 p3=$dir/traveler/company/
@@ -28,12 +31,17 @@ p3=$dir/traveler/company/
 push=1
 if [ $push -ge 1 ]
 then
-# create org
-for i in "${on[@]}"; do printf "Creating org $i" cf create-org $i echo "Created org" $i cf t -o $i
-done
+
+# create org & space
+#for i in "${on[@]}"; do printf "Creating org $i" cf create-org $i echo "Created org" $i cf t -o $i
+#done
 #create space
-for j in "${sn[@]}"; do printf "Creating space $j" cf create-space $j echo "created space $j" cf t -s $j
+#for j in "${sn[@]}"; do printf "Creating space $j" cf create-space $j echo "created space $j" cf t -s $j
 done
+
+# target org & space
+cf login -a {{cf-api}} -u {{cf-username}} -p {{cf-password}}
+cf t -o $on -s $sn
 
 #app push
 for (( p=1; p<=$push; p++ ))
