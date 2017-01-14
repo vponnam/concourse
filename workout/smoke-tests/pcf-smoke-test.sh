@@ -38,7 +38,7 @@ then
 #done
 #create space
 #for j in "${sn[@]}"; do printf "Creating space $j" cf create-space $j echo "created space $j" cf t -s $j
-done
+#done
 
 # target org & space
 cf login -a {{cf-api}} -u {{cf-username}} -p {{cf-password}}
