@@ -1,8 +1,9 @@
 #!/bin/bash
-set -e
+#set -e
 set -x
 
 #sample apps
+apt-get install git -y
 mkdir onetime-directory
 cd onetime-directory
 pwd
