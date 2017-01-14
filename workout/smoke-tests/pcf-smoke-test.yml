@@ -7,7 +7,6 @@ image_resource:
   
 inputs:
 - name: src
-- name: deploy-src
 
 run:
   path: src/workout/smoke-tests/pcf-smoke-test.sh
