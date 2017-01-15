@@ -27,9 +27,9 @@ printf "\nPresent working directory is $dir\n"
 #Create test org and space
 
 #on=("stest-org")
-on={{cf-organization}}
+on=("test")
 #sn=("stest-space")
-sn={{cf-space}}
+sn=("con-test")
 p1=$dir/spring-music/build/libs/spring-music.jar
 p2=$dir/traveler/agency/
 p3=$dir/traveler/company/
@@ -46,7 +46,7 @@ then
 #done
 
 # target org & space
-cf login -a {{cf-api}} -u {{cf-username}} -p {{cf-password}}
+cf login -a https://api.sys.cl-east-sandbox01.cf.ford.com -u test -p test
 cf t -o $on -s $sn
 
 #app push
