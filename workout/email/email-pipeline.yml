@@ -35,5 +35,5 @@ jobs:
           output_body_file: smoke-test
     - put: send-email
       params:
-        subject: email-out/Concourse-task-status-subject
-        body: email-out/smoke-test-body
+        subject: email-out/Concourse-task-status
+        body: email-out/smoke-test
