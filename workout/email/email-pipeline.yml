@@ -31,9 +31,9 @@ jobs:
       config:
         params:
           file_to_hash: email-resource/Dockerfile
-          output_subject_file: Concourse-task-status-user
-          output_body_file: smoke-test-pwd
+          output_subject_file: Concourse-task-status
+          output_body_file: smoke-test
     - put: send-email
       params:
-        subject: email-out/Concourse-task-status
-        body: email-out/smoke-test
+        subject: email-out/Concourse-task-status-subject
+        body: email-out/smoke-test-body
