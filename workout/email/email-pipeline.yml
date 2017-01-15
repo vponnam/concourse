@@ -2,7 +2,7 @@ resources:
 - name: email-resource
   type: git
   source:
-    uri: https://github.com/pivotal-cf/email-resource
+    uri: https://github.com/vponnam/concourse.git
     branch: master
 - name: send-email
   type: email
