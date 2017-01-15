@@ -16,4 +16,4 @@ params:
   file_to_hash: email-resource/LICENSE
   output_subject_file: Concourse-task-status
   output_body_file: smoke-test
-  host: {{smtp-host}}
+  var: {{smtp-host}}
