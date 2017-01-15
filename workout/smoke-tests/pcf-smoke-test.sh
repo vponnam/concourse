@@ -1,13 +1,12 @@
 #!/bin/bash
-#set -e
+set -e
 #set -x
 
 apt-get update
 apt-get install wget git -y
-wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | apt-key add -
-echo "deb http://packages.cloudfoundry.org/debian stable main" | tee /etc/apt/sources.list.d/cloudfoundry-cli.list
-apt-get update
-apt-get install cf-cli -y
+curl -L "https://cli.run.pivotal.io/stable?release=linux64-binary&source=github" | tar -zx
+mv cf /usr/local/bin
+cf --version
 
 #sample apps
 mkdir onetime-directory
