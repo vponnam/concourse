@@ -26,7 +26,7 @@ jobs:
   plan:
     - get: email-resource
       trigger: false
-    - task: demo-prep-sha-email
+    - task: email
       file: email-resource/workout/email/email.yml
       config:
         params:
