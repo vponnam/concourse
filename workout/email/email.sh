@@ -1,5 +1,5 @@
 #!/bin/bash
-set -exu
+set -xu
 
 ls -lR email-out/*
 ls -lR email-resource/*
@@ -11,3 +11,6 @@ output_subject_file=email-out/$output_subject_file
 
 echo -e "Email resource demo on $(date)" > $output_subject_file
 echo -e "SHA1 Hash of \"$file_to_hash\" is $SHA\n\nSucess!\n" > $output_body_file
+
+ls -lR email-out/*
+ls -lR email-resource/*
