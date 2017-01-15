@@ -1,7 +1,8 @@
 #!/bin/bash
 set -exu
 
-ls
+ls -lR email-out/*
+ls -lR email-resource/*
 pwd
 SHA=$(shasum $file_to_hash | cut -d ' ' -f1)
 
