@@ -1,9 +1,14 @@
 #!/bin/bash
 #set -e
-set -x
+#set -x
+
+apt-get install git -y
+wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
+echo "deb http://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+sudo apt-get update
+sudo apt-get install cf-cli
 
 #sample apps
-apt-get install git -y
 mkdir onetime-directory
 cd onetime-directory
 pwd
