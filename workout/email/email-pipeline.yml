@@ -1,0 +1,39 @@
+resources:
+- name: email-resource
+  type: git
+  source:
+    uri: https://github.com/pivotal-cf/email-resource
+    branch: master
+- name: send-email
+  type: email
+  source:
+    smtp:
+      host: {{smtp-host}}
+      port: {{smtp-port}}
+      username: {{smtp-username}}
+      password: {{smtp-password}}
+      from: {{email-from}}
+      to: [ {{email-to}} ]
+
+resource_types:
+- name: email
+  type: docker-image
+  source:
+    repository: pcfseceng/email-resource
+
+jobs:
+- name: email-notification
+  plan:
+    - get: email-resource
+      trigger: false
+    - task: demo-prep-sha-email
+      file: email-resource/workout/email/email.yml
+      config:
+        params:
+          file_to_hash: email-resource/Dockerfile
+          output_subject_file: Concourse-task-status
+          output_body_file: smoke-test
+    - put: send-email
+      params:
+        subject: email-out/Concourse-task-status
+        body: email-out/smoke-test
