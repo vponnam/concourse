@@ -51,7 +51,7 @@ then
 #done
 
 # target org & space
-cf login -a https://api.sys.cl-east-sandbox01.cf.ford.com -u test -p test -o $on -s $sn
+cf login -a  -u  -p  -o $on -s $sn
 
 #app push
 for (( p=1; p<=$push; p++ ))
@@ -128,5 +128,6 @@ if [[ `cf service $i4 | grep -c "failed"` -eq 1 ]]; then printf "\noops..! faile
 fi
 if [[ `cf service $i4 | grep -c "succeeded"` -eq 1 ]]; then printf "\nSuccessfully created config-server service instance\n"
   cf bs cook $i4
+  cf set-env cook TRUST_CERTS api.wise.com
   cf restage cook
 fi
