@@ -1,9 +1,10 @@
 resources:
-- name: email-resource
+- name: src
   type: git
   source:
     uri: https://github.com/vponnam/concourse.git
     branch: master
+
 - name: send-email
   type: email
   source:
@@ -24,16 +25,16 @@ resource_types:
 jobs:
 - name: email-notification
   plan:
-    - get: email-resource
-      trigger: false
-    - task: email
-      file: email-resource/workout/email/email.yml
-      config:
-        params:
-          file_to_hash: email-resource/Dockerfile
-          output_subject_file: Concourse-task-status
-          output_body_file: smoke-test
-    - put: send-email
+  - get: src
+    trigger: false
+  - task: email
+    file: src/workout/email/email.yml
+    config:
       params:
-        subject: email-out/Concourse-task-status
-        body: email-out/smoke-test
+        file_to_hash: email-resource/Dockerfile
+        output_subject_file: Concourse-task-status
+        output_body_file: smoke-test
+  - put: send-email
+    params:
+      subject: email-out/Concourse-task-status
+      body: email-out/smoke-test

@@ -7,7 +7,6 @@ image_resource:
 
 inputs:
 - name: src
-- name: send-email
 
 run:
   path: src/workout/email/email.sh
