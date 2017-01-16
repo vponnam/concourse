@@ -31,7 +31,7 @@ dir=`pwd`
 printf "\nPresent working directory is $dir\n"
 #environment specs
 sys1="sys.cl-east-sandbox01.cf.ford.com"
-rmq1="`https://pivotal-rabbitmq.$sys1`"
+rmq1="https://pivotal-rabbitmq.$sys1"
 #on=("stest-org")
 on=("test")
 #sn=("stest-space")
@@ -123,10 +123,8 @@ if [[ `cf service $i2 | grep -c "succeeded"` -eq 1 ]]; then printf "\nsuccessful
 #  cf restage agency
 #  cf restage company
 fi
-i5=smoke-test-cs
+i5=config-server
 cf cs p-config-server standard $i5
-until [ `cf service $i5 | grep -c "progress"` -eq 0 ]; do echo -n "*"
-done
 if [[ `cf service $i5 | grep -c "failed"` -eq 1 ]]; then printf "\noops..! failed creating config-server service instance\n"; exit 1;
 fi
 if [[ `cf service $i5 | grep -c "succeeded"` -eq 1 ]]; then printf "\nSuccessfully created config-server service instance\n"
