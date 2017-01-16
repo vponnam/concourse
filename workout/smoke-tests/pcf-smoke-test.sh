@@ -27,9 +27,9 @@ printf "\nPresent working directory is $dir\n"
 #Create test org and space
 
 #on=("stest-org")
-on=<>
+on=("test")
 #sn=("stest-space")
-sn=<>
+sn=("con-test")
 p1=$dir/spring-music/build/libs/spring-music.jar
 p2=$dir/traveler/agency/
 p3=$dir/traveler/company/
