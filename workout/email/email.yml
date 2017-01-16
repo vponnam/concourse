@@ -9,7 +9,7 @@ inputs:
   - name: email-resource
 
 run:
-  path: email-resource/workout/email/email.sh
+  path: src/workout/email/email.sh
 outputs:
   - name: email-out
 params:
