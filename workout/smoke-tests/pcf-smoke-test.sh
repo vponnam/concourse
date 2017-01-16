@@ -72,7 +72,7 @@ if [[ `cf service $i3 | grep -c "failed"` -eq 1 ]]; then printf "\noops..! faile
 fi
 if [[ `cf service $i3 | grep -c "succeeded"` -eq 1 ]]; then printf "\nsuccessfully created mysql service instance\n"
 cf bs spring-music $i3
-cf restage spring-music
+#cf restage spring-music
 printf "\nSuccessfully tested mysql service"
 fi
 
@@ -85,7 +85,7 @@ if [[ `cf service $i4 | grep -c "failed"` -eq 1 ]]; then printf "\noops..! faile
 fi
 if [[ `cf service $i4 | grep -c "succeeded"` -eq 1 ]]; then printf "\nSuccessfully created Rabbitmq service instance\n"
 cf bs spring-music $i4
-cf restage spring-music
+#cf restage spring-music
 printf "\nSuccessfully tested Rabbitmq service"
 fi
 
@@ -109,6 +109,6 @@ if [[ `cf service $i2 | grep -c "succeeded"` -eq 1 ]]; then printf "\nsuccessful
   cf bs agency $i1
   cf bs agency $i2
   cf bs company $i1
-  cf restage agency
-  cf restage company
+#  cf restage agency
+#  cf restage company
 fi
