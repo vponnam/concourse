@@ -46,7 +46,7 @@ then
 #done
 
 # target org & space
-cf login -a https://api.sys.cl-east-sandbox01.cf.ford.com -u test -p test -o $on -s $sn
+cf login -a api -u  -p  -o $on -s $sn
 
 #app push
 for (( p=1; p<=$push; p++ ))
