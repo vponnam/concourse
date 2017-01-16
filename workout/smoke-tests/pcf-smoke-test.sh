@@ -22,7 +22,7 @@ cd traveler
 # printf "\ncompiling spring cloud services sample apps\n"
 ./gradlew build
 cd ..
-git clone https://github.com/vponnam/cook.git
+https://github.com/spring-cloud-services-samples/cook.git
 cd cook
 git checkout 1.2
 ./gradlew build
