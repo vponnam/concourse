@@ -53,7 +53,7 @@ then
 #done
 
 # target org & space
-cf login -a https://api.$sys1 -u $on -p $on -o $on -s $sn
+cf login -a 	https://api.$sys1 -u $on -p $on -o $on -s $sn
 
 #app push
 for (( p=1; p<=$push; p++ ))
@@ -124,7 +124,6 @@ if [[ `cf service $i2 | grep -c "succeeded"` -eq 1 ]]; then printf "\nsuccessful
 #  cf restage company
 fi
 i5=config-server
-cf cs p-config-server standard $i5
 if [[ `cf service $i5 | grep -c "failed"` -eq 1 ]]; then printf "\noops..! failed creating config-server service instance\n"; exit 1;
 fi
 if [[ `cf service $i5 | grep -c "succeeded"` -eq 1 ]]; then printf "\nSuccessfully created config-server service instance\n"
