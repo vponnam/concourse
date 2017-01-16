@@ -6,7 +6,7 @@ image_resource:
   source: {repository: golang, tag: "1.5"}
 
 inputs:
-  - name: email-resource
+  - name: src
 
 run:
   path: src/workout/email/email.sh
