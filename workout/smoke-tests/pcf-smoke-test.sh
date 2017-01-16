@@ -71,7 +71,7 @@ done
 fi
 
 #mysql service tests
-echo "Testing MySQL Service"
+echo "Started testing MySQL Service"
 i3=msql
 cf cs p-mysql 100mb-dev $i3
 until [ `cf service $i3 | grep -c "progress"` -eq 0 ]; do echo -n "*"
@@ -85,6 +85,7 @@ printf "\nSuccessfully tested mysql service"
 fi
 
 #Rabbitmq service tests
+echo "Started testing Rabbitmq service"
 if [[ `curl -v $rmq1` && $?=0 ]]; then printf "\nRabbitmq Management console returned response code 200 OK\n";
 else printf "\nPlease check Rabbitmq Management console health status\n"
 fi
@@ -101,6 +102,7 @@ printf "\nSuccessfully tested Rabbitmq service"
 fi
 
 #spring-cloud-service tests
+echo "Started testing spring-cloud-service Service"
 i1=smoke-test-cbd
 cf cs p-circuit-breaker-dashboard standard $i1
 until [ `cf service $i1 | grep -c "progress"` -eq 0 ]; do echo -n "*"
@@ -124,11 +126,18 @@ if [[ `cf service $i2 | grep -c "succeeded"` -eq 1 ]]; then printf "\nsuccessful
 #  cf restage company
 fi
 i5=config-server
+cd $p4
+./scripts/deploy.sh build/libs/cook-0.0.1-SNAPSHOT.jar
 if [[ `cf service $i5 | grep -c "failed"` -eq 1 ]]; then printf "\noops..! failed creating config-server service instance\n"; exit 1;
 fi
 if [[ `cf service $i5 | grep -c "succeeded"` -eq 1 ]]; then printf "\nSuccessfully created config-server service instance\n"
-  cd $p4
-  ./scripts/deploy.sh build/libs/cook-0.0.1-SNAPSHOT.jar
   cf set-env cook TRUST_CERTS api.wise.com
   cf restage cook
 fi
+
+#Redis tests
+echo "Started testing Redis Service"
+
+#Single_Sign_on tests
+echo "Started testing Single_Sign_on Service"
+
