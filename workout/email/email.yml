@@ -11,7 +11,8 @@ inputs:
 run:
   path: src/workout/email/email.sh
 outputs:
-  - name: email-out
+- name: email-out
+
 params:
   file_to_hash: email-resource/LICENSE
   output_subject_file: Concourse-task-status

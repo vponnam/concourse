@@ -1,7 +1,7 @@
 #!/bin/bash
 set -xu
 
-ls email-resource/*
+ls src/*
 pwd
 SHA=$(shasum $file_to_hash | cut -d ' ' -f1)
 
