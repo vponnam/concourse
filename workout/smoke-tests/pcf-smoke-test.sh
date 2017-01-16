@@ -22,6 +22,10 @@ cd traveler
 # printf "\ncompiling spring cloud services sample apps\n"
 ./gradlew build
 cd ..
+git clone https://github.com/vponnam/cook.git
+cd cook
+./gradlew build
+cd ..
 dir=`pwd`
 printf "\nPresent working directory is $dir\n"
 #Create test org and space
@@ -33,6 +37,7 @@ sn=("con-test")
 p1=$dir/spring-music/build/libs/spring-music.jar
 p2=$dir/traveler/agency/
 p3=$dir/traveler/company/
+p4=$dir/cook/
 # push count for load testing
 push=1
 if [ $push -ge 1 ]
@@ -51,14 +56,17 @@ cf login -a https://api.sys.cl-east-sandbox01.cf.ford.com -u test -p test -o $on
 #app push
 for (( p=1; p<=$push; p++ ))
 do
-	echo "Push" $p cf t -o $on -s $sn
-	echo "Pushing app spring-music from $p1"
-	cf push spring-music -p $p1 --random-route
+  echo "Push" $p cf t -o $on -s $sn
+  echo "Pushing app spring-music from $p1"
+  cf push spring-music -p $p1 --random-route
   sleep 2
   cd $p2
   cf push
   sleep 2
   cd $p3
+  cf push
+  sleep 2
+  cd $p4
   cf push
 done
 fi
@@ -111,4 +119,14 @@ if [[ `cf service $i2 | grep -c "succeeded"` -eq 1 ]]; then printf "\nsuccessful
   cf bs company $i1
 #  cf restage agency
 #  cf restage company
+fi
+i4=smoke-test-cs
+cf cs p-config-server standard $i4
+until [ `cf service $i4 | grep -c "progress"` -eq 0 ]; do echo -n "*"
+done
+if [[ `cf service $i4 | grep -c "failed"` -eq 1 ]]; then printf "\noops..! failed creating config-server service instance\n"; exit 1;
+fi
+if [[ `cf service $i4 | grep -c "succeeded"` -eq 1 ]]; then printf "\nSuccessfully created config-server service instance\n"
+  cf bs cook $i4
+  cf restage cook
 fi
