@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
-#set -x
 
 apt-get update
-apt-get install wget git -y
+apt-get install wget git maven -y
+mvn -v
 curl -L "https://cli.run.pivotal.io/stable?release=linux64-binary&source=github" | tar -zx
 mv cf /usr/local/bin
 cf --version
@@ -24,12 +24,14 @@ cd traveler
 cd ..
 git clone https://github.com/vponnam/cook.git
 cd cook
+git checkout 1.2
 ./gradlew build
 cd ..
 dir=`pwd`
 printf "\nPresent working directory is $dir\n"
-#Create test org and space
-
+#environment specs
+sys1="sys.cl-east-sandbox01.cf.ford.com"
+rmq1="`https://pivotal-rabbitmq.$sys1`"
 #on=("stest-org")
 on=("test")
 #sn=("stest-space")
@@ -51,27 +53,25 @@ then
 #done
 
 # target org & space
-cf login -a  -u  -p  -o $on -s $sn
+cf login -a `https://api.$sys1` -u $on -p $on -o $on -s $sn
 
 #app push
 for (( p=1; p<=$push; p++ ))
 do
   echo "Push" $p cf t -o $on -s $sn
   echo "Pushing app spring-music from $p1"
-  cf push spring-music -p $p1 --random-route
+#  cf push spring-music -p $p1 --random-route
   sleep 2
   cd $p2
-  cf push
+#  cf push
   sleep 2
   cd $p3
-  cf push
-  sleep 2
-  cd $p4
-  cf push
+#  cf push
 done
 fi
 
 #mysql service tests
+echo "Testing MySQL Service"
 i3=msql
 cf cs p-mysql 100mb-dev $i3
 until [ `cf service $i3 | grep -c "progress"` -eq 0 ]; do echo -n "*"
@@ -85,6 +85,9 @@ printf "\nSuccessfully tested mysql service"
 fi
 
 #Rabbitmq service tests
+if [[ `curl -v $rmq1` && $?=0 ]]; then printf "\nRabbitmq Management console returned response code 200 OK\n";
+else printf "\nPlease check Rabbitmq Management console health status\n"
+fi
 i4=rmq
 cf cs p-rabbitmq standard $i4
 until [ `cf service $i4 | grep -c "progress"` -eq 0 ]; do echo -n "*"
@@ -120,14 +123,15 @@ if [[ `cf service $i2 | grep -c "succeeded"` -eq 1 ]]; then printf "\nsuccessful
 #  cf restage agency
 #  cf restage company
 fi
-i4=smoke-test-cs
-cf cs p-config-server standard $i4
-until [ `cf service $i4 | grep -c "progress"` -eq 0 ]; do echo -n "*"
+i5=smoke-test-cs
+cf cs p-config-server standard $i5
+until [ `cf service $i5 | grep -c "progress"` -eq 0 ]; do echo -n "*"
 done
-if [[ `cf service $i4 | grep -c "failed"` -eq 1 ]]; then printf "\noops..! failed creating config-server service instance\n"; exit 1;
+if [[ `cf service $i5 | grep -c "failed"` -eq 1 ]]; then printf "\noops..! failed creating config-server service instance\n"; exit 1;
 fi
-if [[ `cf service $i4 | grep -c "succeeded"` -eq 1 ]]; then printf "\nSuccessfully created config-server service instance\n"
-  cf bs cook $i4
+if [[ `cf service $i5 | grep -c "succeeded"` -eq 1 ]]; then printf "\nSuccessfully created config-server service instance\n"
+  cd $p4
+  ./scripts/deploy.sh build/libs/cook-0.0.1-SNAPSHOT.jar
   cf set-env cook TRUST_CERTS api.wise.com
   cf restage cook
 fi
