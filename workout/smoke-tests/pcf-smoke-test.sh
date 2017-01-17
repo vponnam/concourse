@@ -145,8 +145,10 @@ cf cs p-redis shared-vm redis
 cf bs redis-example-app redis
 cf start redis-example-app
 route=`cf app redis-example-app |grep "urls"`
-curl -X PUT $route/foo -d 'data=bar'
-curl -X GET r$route/foo
+r1=`curl -X PUT $route/foo -d 'data=bar'`
+echo "\nInserting data to Redis Cache"
+r2=`curl -X GET r$route/foo`
+echo "\nRetriving inserted value from Redis Cache"
 
 #clean-up task
 
