@@ -61,7 +61,6 @@ cf login -a 	https://api.$sys1 -u $on -p $on -o $on -s $sn
 for (( p=1; p<=$push; p++ ))
 do
   echo "Push" $p cf t -o $on -s $sn
-  echo "Pushing app spring-music from $p1"
 #  cf push spring-music -p $p1 --random-route
   sleep 2
   cd $p2
@@ -69,6 +68,9 @@ do
   sleep 2
   cd $p3
 #  cf push
+  sleep 2
+  cd $p5
+  cf p --no-start
 done
 fi
 
@@ -140,7 +142,6 @@ i5=config-server
 #Redis tests
 echo "Started testing Redis Service"
 cf cs p-redis shared-vm redis
-cf p $p5 --no-start
 cf bs redis-example-app redis
 cf start redis-example-app
 route=`cf app redis-example-app |grep "urls"`
