@@ -31,7 +31,7 @@ git clone https://github.com/vponnam/cf-redis-example-app.git
 dir=`pwd`
 printf "\nPresent working directory is $dir\n"
 #environment specs
-sys1="sys.cl-east-sandbox01.cf.ford.co"
+sys1="sys.cl-east-sandbox01.cf.ford.com"
 rmq1="https://pivotal-rabbitmq.$sys1"
 #on=("stest-org")
 on=("test")
