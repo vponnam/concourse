@@ -22,15 +22,16 @@ cd traveler
 # printf "\ncompiling spring cloud services sample apps\n"
 ./gradlew build
 cd ..
-https://github.com/spring-cloud-services-samples/cook.git
+git clone https://github.com/spring-cloud-services-samples/cook.git
 cd cook
 git checkout 1.2
 ./gradlew build
 cd ..
+git clone https://github.com/vponnam/cf-redis-example-app.git
 dir=`pwd`
 printf "\nPresent working directory is $dir\n"
 #environment specs
-sys1=""
+sys1="sys.cl-east-sandbox01.cf.ford.co"
 rmq1="https://pivotal-rabbitmq.$sys1"
 #on=("stest-org")
 on=("test")
@@ -40,6 +41,7 @@ p1=$dir/spring-music/build/libs/spring-music.jar
 p2=$dir/traveler/agency/
 p3=$dir/traveler/company/
 p4=$dir/cook/
+p5=$dir/cf-redis-example-app/
 # push count for load testing
 push=1
 if [ $push -ge 1 ]
@@ -126,18 +128,24 @@ if [[ `cf service $i2 | grep -c "succeeded"` -eq 1 ]]; then printf "\nsuccessful
 #  cf restage company
 fi
 i5=config-server
-cd $p4
-./scripts/deploy.sh build/libs/cook-0.0.1-SNAPSHOT.jar
-if [[ `cf service $i5 | grep -c "failed"` -eq 1 ]]; then printf "\noops..! failed creating config-server service instance\n"; exit 1;
-fi
-if [[ `cf service $i5 | grep -c "succeeded"` -eq 1 ]]; then printf "\nSuccessfully created config-server service instance\n"
-  cf set-env cook TRUST_CERTS api.wise.com
-  cf restage cook
-fi
+#cd $p4
+#./scripts/deploy.sh build/libs/cook-0.0.1-SNAPSHOT.jar
+#if [[ `cf service $i5 | grep -c "failed"` -eq 1 ]]; then printf "\noops..! failed creating config-server service instance\n"; exit 1;
+#fi
+#if [[ `cf service $i5 | grep -c "succeeded"` -eq 1 ]]; then printf "\nSuccessfully created config-server service instance\n"
+#  cf set-env cook TRUST_CERTS api.wise.com
+#  cf restage cook
+#fi
 
 #Redis tests
 echo "Started testing Redis Service"
+cf cs p-redis shared-vm redis
+cf p $p5 --no-start
+cf bs redis-example-app redis
+cf start redis-example-app
+route=`cf app redis-example-app |grep "urls"`
+curl -X PUT $route/foo -d 'data=bar'
+curl -X GET r$route/foo
 
-#Single_Sign_on tests
-echo "Started testing Single_Sign_on Service"
+#clean-up task
 
