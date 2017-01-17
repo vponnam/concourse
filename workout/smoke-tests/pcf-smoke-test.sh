@@ -30,7 +30,7 @@ cd ..
 dir=`pwd`
 printf "\nPresent working directory is $dir\n"
 #environment specs
-sys1="sys.cl-east-sandbox01.cf.ford.com"
+sys1=""
 rmq1="https://pivotal-rabbitmq.$sys1"
 #on=("stest-org")
 on=("test")
