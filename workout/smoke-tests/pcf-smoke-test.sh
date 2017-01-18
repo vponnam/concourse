@@ -125,7 +125,7 @@ fi
 if [[ `cf service $i2 | grep -c "succeeded"` -eq 1 ]]; then printf "\nsuccessfully created service-registry service instance\n"
   cf bs agency $i1
   cf bs agency $i2
-  cf bs company $i1
+  cf bs company $i2
 #  cf restage agency
 #  cf restage company
 fi
