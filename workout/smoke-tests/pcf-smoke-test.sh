@@ -164,7 +164,7 @@ cf ds $i3 -f
 cf ds $i4 -f
 cf ds $i6 -f
 
-cf delete spring-music -r -f
-cf delete agency -r -f
-cf delete company -r -f
-cf delete redis-example-app -r -f
+cf d spring-music -r -f
+cf d agency -r -f
+cf d company -r -f
+cf d redis-example-app -r -f
