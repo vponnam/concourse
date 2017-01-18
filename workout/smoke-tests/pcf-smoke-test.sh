@@ -140,18 +140,19 @@ i5=config-server
 #fi
 
 #Redis tests
-echo "Started testing Redis Service"
+printf "\nStarted testing Redis Service"
 i6=redis
 cf cs p-redis shared-vm $i6
 cf bs redis-example-app $i6
 cf start redis-example-app
 route=`cf app redis-example-app |grep "urls"`
 r1=`curl -X PUT $route/foo -d 'data=bar'`
-echo "\nInserting data to Redis Cache"
+printf "\nInserting data to Redis Cache"
 r2=`curl -X GET r$route/foo`
-echo "\nRetriving inserted value from Redis Cache"
+printf "\nRetriving inserted value from Redis Cache"
 
 #Clean-up task
+printf "\nCleanup task"
 cf us agency $i1
 cf us agency $i2
 cf us company $i2
