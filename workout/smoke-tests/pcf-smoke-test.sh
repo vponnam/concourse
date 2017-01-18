@@ -141,8 +141,9 @@ i5=config-server
 
 #Redis tests
 echo "Started testing Redis Service"
-cf cs p-redis shared-vm redis
-cf bs redis-example-app redis
+i6=redis
+cf cs p-redis shared-vm $i6
+cf bs redis-example-app $i6
 cf start redis-example-app
 route=`cf app redis-example-app |grep "urls"`
 r1=`curl -X PUT $route/foo -d 'data=bar'`
@@ -150,5 +151,20 @@ echo "\nInserting data to Redis Cache"
 r2=`curl -X GET r$route/foo`
 echo "\nRetriving inserted value from Redis Cache"
 
-#clean-up task
+#Clean-up task
+cf us agency $i1
+cf us agency $i2
+cf us company $i2
+cf us spring-music $i3
+cf us spring-music $i4
+cf us redis-example-app $i6
+cf ds $i1 -f
+cf ds $i2 -f
+cf ds $i3 -f
+cf ds $i4 -f
+cf ds $i6 -f
 
+cf delete spring-music -r -f
+cf delete agency -r -f
+cf delete company -r -f
+cf delete redis-example-app -r -f
