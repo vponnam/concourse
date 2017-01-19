@@ -14,13 +14,12 @@ cd onetime-directory
 pwd
 git clone https://github.com/cloudfoundry-samples/spring-music.git
 cd spring-music
-# printf "\ncompiling app spring-music\n"
 ./gradlew build
 cd ..
 git clone https://github.com/vponnam/rabbitmq-cloudfoundry-samples.git
 cd rabbitmq-cloudfoundry-samples/spring/
 mvn package
-cd ..
+cd ../../
 git clone https://github.com/vponnam/traveler.git
 cd traveler
 # printf "\ncompiling spring cloud services sample apps\n"
