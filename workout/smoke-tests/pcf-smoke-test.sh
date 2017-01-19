@@ -55,19 +55,19 @@ then
 #done
 
 # target org & space
-cf login -a 	https://api.$sys1 -u $on -p $on -o $on -s $sn
+cf login -a https://api.$sys1 -u $on -p $on -o $on -s $sn
 
 #app push
 for (( p=1; p<=$push; p++ ))
 do
   echo "Push" $p cf t -o $on -s $sn
-#  cf push spring-music -p $p1 --random-route
+  cf push spring-music -p $p1 --random-route
   sleep 2
   cd $p2
-#  cf push
+  cf push
   sleep 2
   cd $p3
-#  cf push
+  cf push
   sleep 2
   cd $p5
   cf p --no-start
@@ -84,7 +84,7 @@ if [[ `cf service $i3 | grep -c "failed"` -eq 1 ]]; then printf "\noops..! faile
 fi
 if [[ `cf service $i3 | grep -c "succeeded"` -eq 1 ]]; then printf "\nsuccessfully created mysql service instance\n"
 cf bs spring-music $i3
-#cf restage spring-music
+cf restage spring-music
 printf "\nSuccessfully tested mysql service"
 fi
 
@@ -101,7 +101,7 @@ if [[ `cf service $i4 | grep -c "failed"` -eq 1 ]]; then printf "\noops..! faile
 fi
 if [[ `cf service $i4 | grep -c "succeeded"` -eq 1 ]]; then printf "\nSuccessfully created Rabbitmq service instance\n"
 cf bs spring-music $i4
-#cf restage spring-music
+cf restage spring-music
 printf "\nSuccessfully tested Rabbitmq service"
 fi
 
@@ -126,8 +126,8 @@ if [[ `cf service $i2 | grep -c "succeeded"` -eq 1 ]]; then printf "\nsuccessful
   cf bs agency $i1
   cf bs agency $i2
   cf bs company $i2
-#  cf restage agency
-#  cf restage company
+  cf restage agency
+  cf restage company
 fi
 i5=config-server
 #cd $p4
@@ -135,7 +135,7 @@ i5=config-server
 #if [[ `cf service $i5 | grep -c "failed"` -eq 1 ]]; then printf "\noops..! failed creating config-server service instance\n"; exit 1;
 #fi
 #if [[ `cf service $i5 | grep -c "succeeded"` -eq 1 ]]; then printf "\nSuccessfully created config-server service instance\n"
-#  cf set-env cook TRUST_CERTS api.wise.com
+#  cf set-env cook TRUST_CERTS https://api.$sys1
 #  cf restage cook
 #fi
 
