@@ -17,6 +17,10 @@ cd spring-music
 # printf "\ncompiling app spring-music\n"
 ./gradlew build
 cd ..
+git clone https://github.com/vponnam/rabbitmq-cloudfoundry-samples.git
+cd rabbitmq-cloudfoundry-samples/spring
+mvn package
+cd ..
 git clone https://github.com/vponnam/traveler.git
 cd traveler
 # printf "\ncompiling spring cloud services sample apps\n"
@@ -42,6 +46,7 @@ p2=$dir/traveler/agency/
 p3=$dir/traveler/company/
 p4=$dir/cook/
 p5=$dir/cf-redis-example-app/
+p6=$dir/rabbitmq-cloudfoundry-samples/spring/
 # push count for load testing
 push=1
 if [ $push -ge 1 ]
@@ -100,8 +105,9 @@ done
 if [[ `cf service $i4 | grep -c "failed"` -eq 1 ]]; then printf "\noops..! failed creating Rabbitmq service instance\n"; exit 1;
 fi
 if [[ `cf service $i4 | grep -c "succeeded"` -eq 1 ]]; then printf "\nSuccessfully created Rabbitmq service instance\n"
-cf bs spring-music $i4
-cf restage spring-music
+cd $p6
+cf p  
+cf restage rabbitmq-spring
 printf "\nSuccessfully tested Rabbitmq service"
 fi
 
