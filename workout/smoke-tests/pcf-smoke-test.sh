@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ex
 
 apt-get update
 apt-get install wget git maven -y
@@ -18,7 +18,7 @@ cd spring-music
 ./gradlew build
 cd ..
 git clone https://github.com/vponnam/rabbitmq-cloudfoundry-samples.git
-cd rabbitmq-cloudfoundry-samples/spring
+cd rabbitmq-cloudfoundry-samples/spring/
 mvn package
 cd ..
 git clone https://github.com/vponnam/traveler.git
@@ -106,7 +106,7 @@ if [[ `cf service $i4 | grep -c "failed"` -eq 1 ]]; then printf "\noops..! faile
 fi
 if [[ `cf service $i4 | grep -c "succeeded"` -eq 1 ]]; then printf "\nSuccessfully created Rabbitmq service instance\n"
 cd $p6
-cf p  
+cf p
 cf restage rabbitmq-spring
 printf "\nSuccessfully tested Rabbitmq service"
 fi
@@ -165,14 +165,14 @@ cf us company $i2
 cf us spring-music $i3
 cf us rabbitmq-spring $i4
 cf us redis-example-app $i6
-cf ds $i1 -f
-cf ds $i2 -f
-cf ds $i3 -f
-cf ds $i4 -f
-cf ds $i6 -f
+#cf ds $i1 -f
+#cf ds $i2 -f
+#cf ds $i3 -f
+#cf ds $i4 -f
+#cf ds $i6 -f
 
-cf d spring-music -r -f
-cf d rabbitmq-spring -r -f
-cf d agency -r -f
-cf d company -r -f
-cf d redis-example-app -r -f
+#cf d spring-music -r -f
+#cf d rabbitmq-spring -r -f
+#cf d agency -r -f
+#cf d company -r -f
+#cf d redis-example-app -r -f
