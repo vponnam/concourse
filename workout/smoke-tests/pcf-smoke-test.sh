@@ -163,7 +163,7 @@ cf us agency $i1
 cf us agency $i2
 cf us company $i2
 cf us spring-music $i3
-cf us spring-music $i4
+cf us rabbitmq-spring $i4
 cf us redis-example-app $i6
 cf ds $i1 -f
 cf ds $i2 -f
@@ -172,6 +172,7 @@ cf ds $i4 -f
 cf ds $i6 -f
 
 cf d spring-music -r -f
+cf d rabbitmq-spring -r -f
 cf d agency -r -f
 cf d company -r -f
 cf d redis-example-app -r -f
