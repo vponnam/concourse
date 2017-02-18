@@ -34,7 +34,7 @@ git clone https://github.com/vponnam/cf-redis-example-app.git
 dir=`pwd`
 printf "\nPresent working directory is $dir\n"
 #environment specs
-sys1="sys.cl-east-sandbox01.cf.ford.com"
+sys1="run-14.haas-59.pez.pivotal.io"
 rmq1="https://pivotal-rabbitmq.$sys1"
 #on=("stest-org")
 on=("test")
@@ -81,7 +81,7 @@ fi
 #mysql service tests
 echo "Started testing MySQL Service"
 i3=msql
-cf cs p-mysql 100mb-dev $i3
+cf cs p-mysql pre-existing-plan $i3
 until [ `cf service $i3 | grep -c "progress"` -eq 0 ]; do echo -n "*"
 done
 if [[ `cf service $i3 | grep -c "failed"` -eq 1 ]]; then printf "\noops..! failed creating mysql service instance\n"; exit 1;
@@ -134,7 +134,7 @@ if [[ `cf service $i2 | grep -c "succeeded"` -eq 1 ]]; then printf "\nsuccessful
   cf restage agency
   cf restage company
 fi
-i5=config-server
+i5=config-server # work in progress
 #cd $p4
 #./scripts/deploy.sh build/libs/cook-0.0.1-SNAPSHOT.jar
 #if [[ `cf service $i5 | grep -c "failed"` -eq 1 ]]; then printf "\noops..! failed creating config-server service instance\n"; exit 1;
@@ -164,14 +164,14 @@ cf us company $i2
 cf us spring-music $i3
 cf us rabbitmq-spring $i4
 cf us redis-example-app $i6
-#cf ds $i1 -f
-#cf ds $i2 -f
-#cf ds $i3 -f
-#cf ds $i4 -f
-#cf ds $i6 -f
+cf ds $i1 -f
+cf ds $i2 -f
+cf ds $i3 -f
+cf ds $i4 -f
+cf ds $i6 -f
 
-#cf d spring-music -r -f
-#cf d rabbitmq-spring -r -f
-#cf d agency -r -f
-#cf d company -r -f
-#cf d redis-example-app -r -f
+cf d spring-music -r -f
+cf d rabbitmq-spring -r -f
+cf d agency -r -f
+cf d company -r -f
+cf d redis-example-app -r -f
