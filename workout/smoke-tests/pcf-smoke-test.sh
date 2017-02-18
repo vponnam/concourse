@@ -12,7 +12,7 @@ cf --version
 mkdir onetime-directory
 cd onetime-directory
 pwd
-git clone https://github.com/cloudfoundry-samples/spring-music.git
+git clone https://github.com/vponnam/spring-music.git
 cd spring-music
 ./gradlew build
 cd ..
