@@ -59,7 +59,7 @@ then
 #done
 
 # target org & space
-cf login -a https://api.$sys1 -u $on -p $on -o $on -s $sn
+cf login -a https://api.$sys1 -u $on -p $on -o $on -s $sn --skip-ssl-validation
 
 #app push
 for (( p=1; p<=$push; p++ ))
