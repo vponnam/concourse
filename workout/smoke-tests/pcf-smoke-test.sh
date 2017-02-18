@@ -14,7 +14,7 @@ cd onetime-directory
 pwd
 git clone https://github.com/vponnam/spring-music.git
 cd spring-music
-./gradlew build
+./gradlew assemble
 cd ..
 git clone https://github.com/vponnam/rabbitmq-cloudfoundry-samples.git
 cd rabbitmq-cloudfoundry-samples/spring/
@@ -65,7 +65,8 @@ cf login -a https://api.$sys1 -u $on -p $on -o $on -s $sn --skip-ssl-validation
 for (( p=1; p<=$push; p++ ))
 do
   echo "Push" $p cf t -o $on -s $sn
-  cf push spring-music -p $p1 --random-route
+  cd $p1
+  cf push
   sleep 2
   cd $p2
   cf push
