@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ex
+set -e
 
 apt-get update
 apt-get install wget git maven -y
