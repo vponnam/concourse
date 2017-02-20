@@ -7,16 +7,10 @@ image_resource:
 
 inputs:
 - get: src
-- get: email-resource-source
-- get: send-email
-
-- put: send-email
-  params:
-    subject: email-out/Concourse-task-status
-    body: email-out/smoke-test
 
 run:
   path: src/workout/email/email.sh
+
 outputs:
 - name: email-out
 
