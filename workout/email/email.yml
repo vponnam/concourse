@@ -8,6 +8,7 @@ image_resource:
 inputs:
 - get: src
 - get: email-resource-source
+- get: send-email
 
 jobs:
 - name: email-notification
