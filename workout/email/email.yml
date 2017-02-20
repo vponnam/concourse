@@ -10,19 +10,11 @@ inputs:
 - get: email-resource-source
 - get: send-email
 
-jobs:
-- name: email-notification
-  serial: true
-  plan:
-    config:
-      params:
-        file_to_hash: src/Dockerfile
-        output_subject_file: Concourse-task-status
-        output_body_file: smoke-test
-  - put: send-email
-    params:
-      subject: email-out/Concourse-task-status
-      body: email-out/smoke-test
+- put: send-email
+  params:
+    subject: email-out/Concourse-task-status
+    body: email-out/smoke-test
+
 run:
   path: src/workout/email/email.sh
 outputs:
