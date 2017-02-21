@@ -15,7 +15,6 @@ resources:
 
 inputs:
 - get: src
-- get: send-an-email
 
 jobs:
 - name: demo-email-an-artifact-sha
