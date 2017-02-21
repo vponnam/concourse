@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+: '
+
 apt-get update
 apt-get install wget git maven -y
 mvn -v
@@ -48,6 +50,9 @@ p5=$dir/cf-redis-example-app/
 p6=$dir/rabbitmq-cloudfoundry-samples/spring/
 # push count for load testing
 push=1
+
+'
+
 if [ $push -ge 1 ]
 then
 

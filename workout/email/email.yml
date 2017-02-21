@@ -2,7 +2,6 @@
 platform: linux
 
 resources:
-
 - name: send-an-email
   type: email
   source:
@@ -18,10 +17,13 @@ inputs:
 - get: src
 - get: send-an-email
 
-- put: send-an-email
-    params:
-      subject: demo-prep-sha-email/generated-subject
-      body: demo-prep-sha-email/generated-body
+jobs:
+- name: alert
+  plan:
+  - put: send-an-email
+      params:
+        subject: demo-prep-sha-email/generated-subject
+        body: demo-prep-sha-email/generated-body
 
 run:
   path: src/workout/email/email.sh
