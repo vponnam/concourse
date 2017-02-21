@@ -18,12 +18,20 @@ inputs:
 - get: send-an-email
 
 jobs:
-- name: alert
-  plan:
-  - put: send-an-email
-      params:
-        subject: demo-prep-sha-email/generated-subject
-        body: demo-prep-sha-email/generated-body
+- name: demo-email-an-artifact-sha
+    plan:
+      - get: email-resource-source
+      - task: demo-prep-sha-email
+        file: email-resource-source/ci/demo-prep-sha-email.yml
+        config:
+          params:
+            file_to_hash: email-resource-source/Dockerfile
+            output_subject_file: generated-subject
+            output_body_file: generated-body
+      - put: send-an-email
+        params:
+          subject: email-out/generated-subject
+          body: email-out/generated-body
 
 run:
   path: src/workout/email/email.sh
