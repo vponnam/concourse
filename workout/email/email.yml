@@ -1,39 +1,9 @@
 ---
 platform: linux
 
-resources:
-- name: send-an-email
-  type: email
-  source:
-    smtp:
-      host: smtp.gmail.com
-      port: "587" # this must be a string
-      username: concoursesmtp@gmail.com
-      password: concourse321
-    from: concoursesmtp@gmail.com
-    to: [ "cloudfoundrytech@gmail.com" ]
-
-
-# inputs:
-# - get: src
-# - get: send-an-email
-
-jobs:
-- name: demo-email-an-artifact-sha
-  plan:
-    - get: src
-    - get: email-resource-source
-    - task: demo-prep-sha-email
-      file: email-resource-source/ci/demo-prep-sha-email.yml
-      config:
-        params:
-          file_to_hash: email-resource-source/Dockerfile
-          output_subject_file: generated-subject
-          output_body_file: generated-body
-    - put: send-an-email
-      params:
-        subject: email-out/generated-subject
-        body: email-out/generated-body
+inputs:
+ - get: src
+ - get: send-an-email
 
 run:
   path: src/workout/email/email.sh
