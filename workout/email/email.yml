@@ -1,6 +1,19 @@
 ---
 platform: linux
 
+resources:
+
+- name: send-an-email
+  type: email
+  source:
+    smtp:
+      host: {{smtp-host}}
+      port: {{smtp-port}} # this must be a string
+      username: {{smtp-username}}
+      password: {{smtp-password}}
+    from: {{email-from}}
+    to: [ {{email-to}} ]
+
 inputs:
 - get: src
 - get: send-an-email
