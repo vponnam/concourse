@@ -6,12 +6,12 @@ resources:
   type: email
   source:
     smtp:
-      host: {{smtp-host}}
-      port: {{smtp-port}} # this must be a string
-      username: {{smtp-username}}
-      password: {{smtp-password}}
-    from: {{email-from}}
-    to: [ {{email-to}} ]
+      host: smtp.gmail.com
+      port: "587" # this must be a string
+      username: concoursesmtp@gmail.com
+      password: concourse321
+    from: concoursesmtp@gmail.com
+    to: [ "cloudfoundrytech@gmail.com" ]
 
 inputs:
 - get: src
