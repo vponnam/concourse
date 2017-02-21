@@ -13,12 +13,15 @@ resources:
     from: concoursesmtp@gmail.com
     to: [ "cloudfoundrytech@gmail.com" ]
 
+: '
 inputs:
 - get: src
-
+- get: send-an-email
+'
 jobs:
 - name: demo-email-an-artifact-sha
   plan:
+    - get: src
     - get: email-resource-source
     - task: demo-prep-sha-email
       file: email-resource-source/ci/demo-prep-sha-email.yml
