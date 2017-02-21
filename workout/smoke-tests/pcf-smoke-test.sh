@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-: '
-
 apt-get update
 apt-get install wget git maven -y
 mvn -v
@@ -50,8 +48,6 @@ p5=$dir/cf-redis-example-app/
 p6=$dir/rabbitmq-cloudfoundry-samples/spring/
 # push count for load testing
 push=1
-
-'
 
 if [ $push -ge 1 ]
 then
@@ -162,6 +158,8 @@ printf "\nInserting data to Redis Cache"
 r2=`curl -X GET r$route/foo`
 printf "\nRetriving inserted value from Redis Cache"
 
+: '
+
 #Clean-up task
 printf "\nCleanup task"
 cf us agency $i1
@@ -182,3 +180,5 @@ cf d agency -r -f
 cf d company -r -f
 cf d redis-example-app -r -f
 printf "\nSucessfully completed PCF smoke-test"
+
+'
