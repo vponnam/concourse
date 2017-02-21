@@ -176,3 +176,4 @@ cf d rabbitmq-spring -r -f
 cf d agency -r -f
 cf d company -r -f
 cf d redis-example-app -r -f
+printf "\nSucessfully completed PCF smoke-test"
