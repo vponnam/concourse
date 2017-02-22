@@ -158,7 +158,6 @@ printf "\nInserting data to Redis Cache"
 r2=`curl -X GET r$route/foo`
 printf "\nRetriving inserted value from Redis Cache"
 
-:'
 #Clean-up task
 printf "\nCleanup task"
 cf us agency $i1
@@ -179,4 +178,3 @@ cf d agency -r -f
 cf d company -r -f
 cf d redis-example-app -r -f
 printf "\nSucessfully completed PCF smoke-test"
-'
