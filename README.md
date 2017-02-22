@@ -3,7 +3,7 @@
 
 ##### Pipeline uses an org named **test** space **con-test** to push test apps bind them to platform services
 ###### Make sure either those are created or replace the script with proper details
-	``` javascript
+	```javascript
 	cf co test
 	cf t -o test
 	cf create-space con-test
