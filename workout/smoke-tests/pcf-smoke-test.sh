@@ -51,15 +51,6 @@ push=1
 
 if [ $push -ge 1 ]
 then
-
-# create org & space
-#for i in "${on[@]}"; do printf "Creating org $i" cf create-org $i echo "Created org" $i cf t -o $i
-#done
-#create space
-#for j in "${sn[@]}"; do printf "Creating space $j" cf create-space $j echo "created space $j" cf t -s $j
-#done
-
-# target org & space
 cf login -a https://api.$sys1 -u $on -p $on -o $on -s $sn --skip-ssl-validation
 
 #app push
@@ -137,14 +128,6 @@ if [[ `cf service $i2 | grep -c "succeeded"` -eq 1 ]]; then printf "\nsuccessful
   cf restage company
 fi
 i5=config-server # work in progress
-#cd $p4
-#./scripts/deploy.sh build/libs/cook-0.0.1-SNAPSHOT.jar
-#if [[ `cf service $i5 | grep -c "failed"` -eq 1 ]]; then printf "\noops..! failed creating config-server service instance\n"; exit 1;
-#fi
-#if [[ `cf service $i5 | grep -c "succeeded"` -eq 1 ]]; then printf "\nSuccessfully created config-server service instance\n"
-#  cf set-env cook TRUST_CERTS https://api.$sys1
-#  cf restage cook
-#fi
 
 #Redis tests
 printf "\nStarted testing Redis Service"
