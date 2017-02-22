@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-#User input
+#User inputs
 sys1="run-14.haas-59.pez.pivotal.io"
 on=("test")
 sn=("con-test")

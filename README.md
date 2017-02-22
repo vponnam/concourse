@@ -2,7 +2,13 @@
 
 
 ##### Pipeline uses an org named *test* space *con-test* to push test apps bind them to platform services
-###### Make sure either those are created or replace the script with proper details
+###### Make sure either those are created or replace the script with proper details, under below path.
+
+> path: workout/smoke-tests/pcf-smoke-test.sh 
+
+	sys1="sys-domain"	`Replace with sys domain`
+	on=("test")			`org-name`
+	sn=("con-test")		`space-name`
 
 Reference create syntax
 	
