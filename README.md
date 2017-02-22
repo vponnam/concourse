@@ -20,4 +20,4 @@ Reference create syntax
 
 ##### This pipeline tests *Mysql, Rabbitmq, Spring-cloud-services (circuit-breaker and service-registry) and Redis* services. Please comment the sections those are not applicable to your environment.
 
-> Note: workout session is still TBD.. (not fully baked)
+> Note: some sections in workout folder are still work in progress.. (not fully baked) :)
