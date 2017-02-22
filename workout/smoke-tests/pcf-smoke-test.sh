@@ -1,6 +1,11 @@
 #!/bin/bash
 set -e
 
+#User input
+sys1="run-14.haas-59.pez.pivotal.io"
+on=("test")
+sn=("con-test")
+
 apt-get update
 apt-get install wget git maven -y
 mvn -v
@@ -34,12 +39,7 @@ git clone https://github.com/vponnam/cf-redis-example-app.git
 dir=`pwd`
 printf "\nPresent working directory is $dir\n"
 #environment specs
-sys1="run-14.haas-59.pez.pivotal.io"
 rmq1="https://pivotal-rabbitmq.$sys1"
-#on=("stest-org")
-on=("test")
-#sn=("stest-space")
-sn=("con-test")
 p1=$dir/spring-music/
 p2=$dir/traveler/agency/
 p3=$dir/traveler/company/
