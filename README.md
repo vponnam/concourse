@@ -20,4 +20,10 @@ Reference create syntax
 
 ##### This pipeline tests *Mysql, Rabbitmq, Spring-cloud-services (circuit-breaker and service-registry) and Redis* services. Please comment the sections those are not applicable to your environment.
 
+Set the pipeline as below reference
+	
+	fly sp -t <concourse-target> -c smokeTestv1.1-pipeline.yml -p <pipeline-name> -l creds.yml
+
+craete a creds.yml with all the `{{}}` variables referred in smokeTestv1.1-pipeline.yml
+
 > Note: some sections in workout folder are still work in progress.. (not fully baked) :)
