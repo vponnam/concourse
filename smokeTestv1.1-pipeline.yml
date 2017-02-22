@@ -1,0 +1,83 @@
+---
+resources:
+- name: src
+  type: git
+  source:
+    uri: https://github.com/vponnam/concourse.git
+    branch: dev
+
+- name: alert
+  type: email
+  source:
+    smtp:
+      host: {{smtp-host}}
+      port: {{smtp-port}}
+      username: {{smtp-username}}
+      password: {{smtp-password}}
+    from: {{email-from}}
+    to: [ {{email-to}} ]
+
+- name: timer
+  type: time
+  source: {interval: 360m}
+
+resource_types:
+- name: email
+  type: docker-image
+  source:
+    repository: pcfseceng/email-resource
+
+jobs:
+- name: pcf-smoke-tests
+  plan:
+  - get: timer
+    trigger: true
+  - get: src
+  - task: smoke-test
+    file: src/workout/smoke-tests/pcf-smoke-test.yml
+    on_success:
+      do:
+      - task: notification-content
+        config:
+          platform: linux
+          inputs:
+          - name: src
+          outputs:
+          - name: content
+          image_resource:
+            type: docker-image
+            source: {repository: busybox}
+          run:
+            path: sh
+            args:
+            - -exc
+            - |
+              echo "PCF Smoke-test Successful..!" >> content/notification_subject.txt
+              echo "Successfully completed platform smoke-test" >> content/notification_body.txt
+      - put: alert
+        params:
+          subject: content/notification_subject.txt
+          body: content/notification_body.txt
+    on_failure:
+      do:
+      - task: notification-content
+        config:
+          platform: linux
+          inputs:
+          - name: src
+          outputs:
+          - name: content
+          image_resource:
+            type: docker-image
+            source: {repository: busybox}
+          run:
+            path: sh
+            args:
+            - -exc
+            - |
+              echo "Smoke-test Failed..!" >> content/notification_subject.txt
+              echo "Failed running complete-smoke-status. ********Something is broken******** " >> content/notification_body.txt
+      - put: alert
+        params:
+          subject: content/notification_subject.txt
+          body: content/notification_body.txt
