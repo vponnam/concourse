@@ -1,44 +1,15 @@
-# concourse
-# Below instructions are for installing concourse 3 node cluster with a bosh director
+*Pre-requisites*
 
-Step 1:
-Bosh Cloud Config
 
-Ref:
-https://concourse.ci/installing.html
-Cloud-Config
-http://bosh.io/docs/openstack-cpi.html#cloud-config
+##### Pipeline uses an org named *test* space *con-test* to push test apps bind them to platform services
+###### Make sure either those are created or replace the script with proper details
 
-Step 2:
-Concourse Manifest Properties
+Reference create syntax
+	
+	cf co test
+	cf t -o test
+	cf create-space con-test
 
-Ref: https://concourse.ci/clusters-with-bosh.html#prepping-bosh
+##### Replace the user in the smoke-test.sh script who's assigned atleast a *space-developer* role and change the system domain name
 
-Notes:
-       Reserve IP's in cloud-config.
-
-Step 3:
-bosh deployment councourse.yml
-bosh deploy
-
-After successfully deploying 3 node (web/0, db/0, worker/0) concourse cluster, assign a floting IP to web/0 job and access concourse web ui using http://FloatingIP:8080 
-
-fly binary:
-download the latest fly binary from https://concourse.ci/downloads.html
-
-chmod +x ~/fly_darwin_amd64
-
-mv ~/fly_darwin_amd64 /usr/local/bin/fly
-
-fly -v # should report current fly binary version 
-
-Setting fly target
-
-fly --target "target-name" login  --concourse-url http://FIP:8080
-
-fly -t tutorial sync
-
-can verify the target api 'cat ~/.flyrc'
-
-Tutorial:
-https://github.com/starkandwayne/concourse-tutorial
+##### This pipeline tests *Mysql, Rabbitmq, Spring-cloud-services (circuit-breaker and service-registry) and Redis* services. Please comment the sections those are not applicable to your environment.

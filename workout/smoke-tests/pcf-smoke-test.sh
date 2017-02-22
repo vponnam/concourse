@@ -48,6 +48,7 @@ p5=$dir/cf-redis-example-app/
 p6=$dir/rabbitmq-cloudfoundry-samples/spring/
 # push count for load testing
 push=1
+
 if [ $push -ge 1 ]
 then
 
@@ -176,3 +177,4 @@ cf d rabbitmq-spring -r -f
 cf d agency -r -f
 cf d company -r -f
 cf d redis-example-app -r -f
+printf "\nSucessfully completed PCF smoke-test"
