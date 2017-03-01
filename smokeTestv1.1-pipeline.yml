@@ -76,7 +76,7 @@ jobs:
             - -exc
             - |
               echo "Smoke-test Failed..!" >> content/notification_subject.txt
-              echo "Failed running complete-smoke-status. ********Something is broken******** " >> content/notification_body.txt
+              echo "Failed running complete-smoke-status; ********Something is broken******** " >> content/notification_body.txt
       - put: alert
         params:
           subject: content/notification_subject.txt
