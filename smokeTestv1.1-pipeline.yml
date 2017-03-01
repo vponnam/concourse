@@ -17,7 +17,7 @@ resources:
     from: {{email-from}}
     to: [ {{email-to}} ]
 
-- name: timer
+- name: scheduler
   type: time
   source: {interval: 360m}
 
@@ -30,7 +30,7 @@ resource_types:
 jobs:
 - name: pcf-smoke-tests
   plan:
-  - get: timer
+  - get: scheduler
     trigger: true
   - get: src
   - task: smoke-test
