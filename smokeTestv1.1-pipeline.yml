@@ -52,7 +52,7 @@ jobs:
             args:
             - -exc
             - |
-              echo "PCF Smoke-test Successful..!" >> content/notification_subject.txt
+              echo "PCF Smoke-test is Successful..!" >> content/notification_subject.txt
               echo "Successfully completed platform smoke-test" >> content/notification_body.txt
       - put: alert
         params:
