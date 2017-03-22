@@ -1,12 +1,12 @@
 #!/bin/bash
-set -e
+set -ex
 
 #User inputs
 sys1="run-14.haas-59.pez.pivotal.io"
 on=("test")
 sn=("con-test")
 
-apt-get update
+#apt-get update
 apt-get install wget git maven -y
 mvn -v
 curl -L "https://cli.run.pivotal.io/stable?release=linux64-binary&source=github" | tar -zx
