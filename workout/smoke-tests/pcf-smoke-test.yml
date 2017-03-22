@@ -3,7 +3,7 @@ platform: linux
 
 image_resource: 
   type: docker-image
-  source: {repository: wingyplus/java-gradle}
+  source: {repository: hedlund/gradlew}
   
 inputs:
 - name: src
