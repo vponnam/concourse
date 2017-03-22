@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ex
+set -e
 
 #User inputs
 sys1="run-14.haas-59.pez.pivotal.io"

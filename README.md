@@ -16,7 +16,7 @@ Reference create syntax
 	cf t -o test
 	cf create-space con-test
 
-##### Replace the user in the smoke-test.sh script who's assigned atleast a *space-developer* role and change the system domain name
+##### Replace the user in the smoke-test.sh script who's assigned atleast a *space-developer* role or create a user named *test* and assign a *space-developer role*
 
 ##### This pipeline tests *Mysql, Rabbitmq, Spring-cloud-services (circuit-breaker and service-registry) and Redis* services. Please comment the sections those are not applicable to your environment.
 
