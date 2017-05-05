@@ -45,7 +45,7 @@ push=1
 
 if [ $push -ge 1 ]
 then
-cf login -a https://api.$sys -u $org -p $on -o $on -s $sn --skip-ssl-validation
+cf login -a https://api.$sys -u $user -p $pwd -o $org -s $sn --skip-ssl-validation
 
 #app push
 for (( p=1; p<=$push; p++ ))
