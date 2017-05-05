@@ -121,13 +121,12 @@ if [[ `cf service $i2 | grep -c "succeeded"` -eq 1 ]]; then printf "\nsuccessful
   cf restage agency
   cf restage company
 fi
-i5=config-server # work in progress
 
 #Redis tests
 printf "\nStarted testing Redis Service"
-i6=redis
-cf cs p-redis shared-vm $i6
-cf bs redis-example-app $i6
+i5=redis
+cf cs p-redis shared-vm $i5
+cf bs redis-example-app $i5
 cf start redis-example-app
 route=`cf app redis-example-app |grep "urls"`
 r1=`curl -X PUT $route/foo -d 'data=bar'`
@@ -142,7 +141,7 @@ cf us agency $i2
 cf us company $i2
 cf us spring-music $i3
 cf us rabbitmq-spring $i4
-cf us redis-example-app $i6
+cf us redis-example-app $i5
 cf ds $i1 -f
 cf ds $i2 -f
 cf ds $i3 -f
