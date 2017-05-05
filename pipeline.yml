@@ -4,7 +4,7 @@ resources:
   type: git
   source:
     uri: https://github.com/vponnam/concourse.git
-    branch: master 
+    branch: master
 
 - name: alert
   type: email
@@ -35,6 +35,12 @@ jobs:
   - get: src
   - task: smoke-test
     file: src/workout/smoke-tests/pcf-smoke-test.yml
+    params:
+      user: {{cf-user}}
+      pwd: {{cf-pwd}}
+      sys: {{cf-sys}}
+      on: {{cf-org}}
+      sn: {{cf-space}}
     on_success:
       do:
       - task: notification-content

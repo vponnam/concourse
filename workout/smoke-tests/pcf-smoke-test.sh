@@ -1,11 +1,6 @@
 #!/bin/bash
 set -e
 
-#User inputs
-sys1="run-14.haas-59.pez.pivotal.io"
-on=("test")
-sn=("con-test")
-
 apt-get update
 apt-get install wget git maven -y
 mvn -v
@@ -27,7 +22,6 @@ mvn package
 cd ../../
 git clone https://github.com/vponnam/traveler.git
 cd traveler
-# printf "\ncompiling spring cloud services sample apps\n"
 ./gradlew build
 cd ..
 git clone https://github.com/spring-cloud-services-samples/cook.git
@@ -39,19 +33,19 @@ git clone https://github.com/vponnam/cf-redis-example-app.git
 dir=`pwd`
 printf "\nPresent working directory is $dir\n"
 #environment specs
-rmq1="https://pivotal-rabbitmq.$sys1"
+rmq1="https://pivotal-rabbitmq.$sys"
 p1=$dir/spring-music/
 p2=$dir/traveler/agency/
 p3=$dir/traveler/company/
 p4=$dir/cook/
 p5=$dir/cf-redis-example-app/
 p6=$dir/rabbitmq-cloudfoundry-samples/spring/
-# push count for load testing
+# Increase push count for load testing
 push=1
 
 if [ $push -ge 1 ]
 then
-cf login -a https://api.$sys1 -u $on -p $on -o $on -s $sn --skip-ssl-validation
+cf login -a https://api.$sys -u $on -p $on -o $on -s $sn --skip-ssl-validation
 
 #app push
 for (( p=1; p<=$push; p++ ))
@@ -153,7 +147,6 @@ cf ds $i1 -f
 cf ds $i2 -f
 cf ds $i3 -f
 cf ds $i4 -f
-cf ds $i6 -f
 
 cf d spring-music -r -f
 cf d rabbitmq-spring -r -f
