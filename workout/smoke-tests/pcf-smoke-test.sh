@@ -9,7 +9,7 @@ mkdir /opt/gradle
 unzip -d /opt/gradle gradle-3.4.1-bin.zip
 export PATH=$PATH:/opt/gradle/gradle-3.4.1/bin
 gradle -v
-chmod +rx /root/.gradle/
+chmod -R +x /root/.gradle/
 mvn -v
 curl -L "https://cli.run.pivotal.io/stable?release=linux64-binary&source=github" | tar -zx
 mv cf /usr/local/bin
