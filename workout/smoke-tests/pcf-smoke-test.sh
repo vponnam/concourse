@@ -45,12 +45,12 @@ push=1
 
 if [ $push -ge 1 ]
 then
-cf login -a https://api.$sys -u $on -p $on -o $on -s $sn --skip-ssl-validation
+cf login -a https://api.$sys -u $org -p $on -o $on -s $sn --skip-ssl-validation
 
 #app push
 for (( p=1; p<=$push; p++ ))
 do
-  echo "Push" $p cf t -o $on -s $sn
+  echo "Push" $p cf t -o $org -s $sn
   cd $p1
   cf push
   sleep 2

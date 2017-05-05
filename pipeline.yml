@@ -39,7 +39,7 @@ jobs:
       user: {{cf-user}}
       pwd: {{cf-pwd}}
       sys: {{cf-sys}}
-      on: {{cf-org}}
+      org: {{cf-org}}
       sn: {{cf-space}}
     on_success:
       do:
