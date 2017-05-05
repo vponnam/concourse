@@ -6,4 +6,4 @@ This pipeline tests *Mysql, Rabbitmq, Spring-cloud-services (circuit-breaker and
 
 ##### Set the pipeline as below
 
-> fly sp -t <concourse-target> -c pipeline.yml -p <pipeline-name> -l creds.yml
+`fly sp -t <concourse-target> -c pipeline.yml -p <pipeline-name> -l creds.yml`
