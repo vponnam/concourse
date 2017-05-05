@@ -1,6 +1,7 @@
 #!/bin/bash
 set -xe
 
+apt-get update -y
 apt-get -y install openjdk-8-jdk unzip git maven
 java -version
 wget https://services.gradle.org/distributions/gradle-3.4.1-bin.zip
