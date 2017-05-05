@@ -1,0 +1,12 @@
+smtp-host:
+smtp-port:
+smtp-username:
+smtp-password:
+email-from:
+email-to:
+
+cf-sys: #replace with system domain
+cf-user: #username
+cf-pwd: #password for above user
+cf-org: #org-name where you wanna run the smoke-test
+cf-space: #space-name in above org
