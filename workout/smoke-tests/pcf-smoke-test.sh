@@ -1,8 +1,13 @@
 #!/bin/bash
-set -e
+set -xe
 
-apt-get update
-apt-get install wget git maven -y
+apt-get -y install openjdk-8-jdk unzip git maven
+java -version
+wget https://services.gradle.org/distributions/gradle-3.4.1-bin.zip
+mkdir /opt/gradle
+unzip -d /opt/gradle gradle-3.4.1-bin.zip
+export PATH=$PATH:/opt/gradle/gradle-3.4.1/bin
+gradle -v
 mvn -v
 curl -L "https://cli.run.pivotal.io/stable?release=linux64-binary&source=github" | tar -zx
 mv cf /usr/local/bin
@@ -68,7 +73,7 @@ fi
 #mysql service tests
 echo "Started testing MySQL Service"
 i3=msql
-cf cs p-mysql pre-existing-plan $i3
+cf cs p-mysql 100mb-dev $i3
 until [ `cf service $i3 | grep -c "progress"` -eq 0 ]; do echo -n "*"
 done
 if [[ `cf service $i3 | grep -c "failed"` -eq 1 ]]; then printf "\noops..! failed creating mysql service instance\n"; exit 1;
