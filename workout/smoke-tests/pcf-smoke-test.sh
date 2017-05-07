@@ -1,19 +1,5 @@
 #!/bin/bash
-set -xe
-
-apt-get update -y
-apt-get -y install wget curl unzip git maven
-java -version
-wget https://services.gradle.org/distributions/gradle-3.4.1-bin.zip
-mkdir /opt/gradle
-unzip -d /opt/gradle gradle-3.4.1-bin.zip
-export PATH=$PATH:/opt/gradle/gradle-3.4.1/bin
-gradle -v
-chmod -R +x /opt/gradle
-mvn -v
-curl -L "https://cli.run.pivotal.io/stable?release=linux64-binary&source=github" | tar -zx
-mv cf /usr/local/bin
-cf --version
+set -e
 
 #sample apps
 mkdir onetime-directory
