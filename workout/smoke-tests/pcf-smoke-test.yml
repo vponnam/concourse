@@ -3,7 +3,7 @@ platform: linux
 
 image_resource:
   type: docker-image
-  source: {repository: vponnam/smoke-test}
+  source: {repository: vponnam/smoke-test-v2}
 
 inputs:
 - name: src
