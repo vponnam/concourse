@@ -122,10 +122,10 @@ i5=redis
 cf cs p-redis shared-vm $i5
 cf bs redis-example-app $i5
 cf start redis-example-app
-sleep 2
-$(curl -X PUT $(cf app redis-example-app | grep urls | awk '{print $2}')/foo -d 'data=bar')
+cf app redis-example-app
+$(curl -X PUT $(cf app redis-example-app | grep routes | awk '{print $2}')/foo -d 'data=bar')
 printf "\nInserting data to Redis Cache"
-$(curl -X GET $(cf app redis-example-app | grep urls | awk '{print $2}')/foo)
+$(curl -X GET $(cf app redis-example-app | grep routes | awk '{print $2}')/foo)
 printf "\nRetriving inserted value from Redis Cache"
 
 #Clean-up task
