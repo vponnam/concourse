@@ -69,7 +69,7 @@ if [[ `cf service $i3 | grep -c "failed"` -eq 1 ]]; then printf "\noops..! faile
 fi
 if [[ `cf service $i3 | grep -c "succeeded"` -eq 1 ]]; then printf "\nsuccessfully created mysql service instance\n"
 cf bs spring-music $i3
-cf restage spring-music
+#cf restage spring-music
 printf "\nSuccessfully tested mysql service"
 fi
 
@@ -87,7 +87,7 @@ fi
 if [[ `cf service $i4 | grep -c "succeeded"` -eq 1 ]]; then printf "\nSuccessfully created Rabbitmq service instance\n"
 cd $p6
 cf p
-cf restage rabbitmq-spring
+#cf restage rabbitmq-spring
 printf "\nSuccessfully tested Rabbitmq service"
 fi
 
@@ -112,8 +112,8 @@ if [[ `cf service $i2 | grep -c "succeeded"` -eq 1 ]]; then printf "\nsuccessful
   cf bs agency $i1
   cf bs agency $i2
   cf bs company $i2
-  cf restage agency
-  cf restage company
+#  cf restage agency
+#  cf restage company
 fi
 
 #Redis tests
@@ -122,11 +122,11 @@ i5=redis
 cf cs p-redis shared-vm $i5
 cf bs redis-example-app $i5
 cf start redis-example-app
-route=`cf app redis-example-app |grep "urls" | awk '{print $2}'`
+route=$(cf app redis-example-app |grep "urls" | awk '{print $2}')
 echo $route
-r1=`curl -X PUT $route/foo -d 'data=bar'`
+$(curl -X PUT $route/foo -d 'data=bar')
 printf "\nInserting data to Redis Cache"
-r2=`curl -X GET $route/foo`
+$(curl -X GET $route/foo)
 printf "\nRetriving inserted value from Redis Cache"
 
 #Clean-up task
