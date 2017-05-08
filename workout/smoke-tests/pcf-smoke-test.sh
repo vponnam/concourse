@@ -1,5 +1,5 @@
 #!/bin/bash
-set -xe
+set -e
 export TERM=xterm
 
 #sample apps
@@ -69,7 +69,7 @@ if [[ `cf service $i3 | grep -c "failed"` -eq 1 ]]; then printf "\noops..! faile
 fi
 if [[ `cf service $i3 | grep -c "succeeded"` -eq 1 ]]; then printf "\nsuccessfully created mysql service instance\n"
 cf bs spring-music $i3
-#cf restage spring-music
+cf restage spring-music
 printf "\nSuccessfully tested mysql service"
 fi
 
@@ -87,7 +87,7 @@ fi
 if [[ `cf service $i4 | grep -c "succeeded"` -eq 1 ]]; then printf "\nSuccessfully created Rabbitmq service instance\n"
 cd $p6
 cf p
-#cf restage rabbitmq-spring
+cf restage rabbitmq-spring
 printf "\nSuccessfully tested Rabbitmq service"
 fi
 
@@ -112,8 +112,8 @@ if [[ `cf service $i2 | grep -c "succeeded"` -eq 1 ]]; then printf "\nsuccessful
   cf bs agency $i1
   cf bs agency $i2
   cf bs company $i2
-#  cf restage agency
-#  cf restage company
+  cf restage agency
+  cf restage company
 fi
 
 #Redis tests
@@ -146,4 +146,5 @@ cf d rabbitmq-spring -r -f
 cf d agency -r -f
 cf d company -r -f
 cf d redis-example-app -r -f
+cf delete-orphaned-routes -f
 printf "\nSucessfully completed PCF smoke-test"
