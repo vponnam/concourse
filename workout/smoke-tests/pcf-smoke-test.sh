@@ -123,6 +123,7 @@ cf cs p-redis shared-vm $i5
 cf bs redis-example-app $i5
 cf start redis-example-app
 route=`cf app redis-example-app |grep "urls" | awk '{print $2}'`
+echo $route
 r1=`curl -X PUT $route/foo -d 'data=bar'`
 printf "\nInserting data to Redis Cache"
 r2=`curl -X GET $route/foo`
