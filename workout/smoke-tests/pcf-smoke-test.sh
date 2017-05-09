@@ -18,11 +18,6 @@ git clone https://github.com/vponnam/traveler.git
 cd traveler
 ./gradlew build
 cd ..
-git clone https://github.com/spring-cloud-services-samples/cook.git
-cd cook
-git checkout 1.2
-./gradlew build
-cd ..
 git clone https://github.com/vponnam/cf-redis-example-app.git
 dir=`pwd`
 printf "\nPresent working directory is $dir\n"
