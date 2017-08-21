@@ -1,0 +1,33 @@
+---
+resources:
+resources:
+- name: src
+  type: git
+  source:
+    uri: https://github.com/vponnam/concourse.git
+    branch: master
+
+jobs:
+- name: my-load-1
+  plan:
+  - get: src
+  - task: smoke-test
+    file: src/workout/endpoint-test/load-test1.yml
+    params:
+      r1: {{route1}}
+
+- name: my-load-2
+  plan:
+  - get: src
+  - task: smoke-test
+    file: src/workout/endpoint-test/load-test2.yml
+    params:
+      r2: {{route2}}
+
+- name: my-load-3
+  plan:
+  - get: src
+  - task: smoke-test
+    file: src/workout/endpoint-test/load-test3.yml
+    params:
+      r3: {{route3}}
