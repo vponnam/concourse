@@ -8,15 +8,15 @@ resources:
     branch: master
 
 jobs:
-- name: my-load-1
+- name: endpoind-1
   plan:
   - get: src
-  - task: smoke-test
+  - task: endpoind-1
     file: src/workout/endpoint-test/load-test1.yml
     params:
       r1: {{route1}}
 
-- name: my-load-2
+- name: endpoind-2
   plan:
   - get: src
   - task: smoke-test
@@ -24,7 +24,7 @@ jobs:
     params:
       r2: {{route2}}
 
-- name: my-load-3
+- name: endpoind-3
   plan:
   - get: src
   - task: smoke-test
