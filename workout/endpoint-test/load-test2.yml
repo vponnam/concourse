@@ -3,7 +3,10 @@ platform: linux
 
 image_resource:
   type: docker-image
-  source: {ubuntu}
+  source: {repository: vponnam/smoke-test}
+
+inputs:
+- name: src
 
 run:
   path: src/workout/endpoint-test/load2.sh
