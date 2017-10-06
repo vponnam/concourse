@@ -2,6 +2,7 @@
 set -e
 export TERM=xterm
 curl --version
+apt-get upgrade
 apt-get upgrade curl -y
 
 #sample apps
