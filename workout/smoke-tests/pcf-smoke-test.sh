@@ -2,8 +2,8 @@
 set -e
 export TERM=xterm
 curl --version
-apt-get upgrade
-apt-get upgrade curl -y
+apt-get upgrade -y
+apt-get upgrade curl.x86_64 -y
 
 #sample apps
 mkdir onetime-directory
