@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -xe
 export TERM=xterm
 curl --version
 apt-get upgrade -y
@@ -121,6 +121,7 @@ cf cs p-redis shared-vm $i5
 cf bs redis-example-app $i5
 cf start redis-example-app
 cf app redis-example-app
+echo https://$(cf app redis-example-app | grep urls | awk '{print $2}')/foo
 curl -kX PUT https://$(cf app redis-example-app | grep urls | awk '{print $2}')/foo -d 'data=bar'
 printf "\nInserting data to Redis Cache"
 curl -kX GET https://$(cf app redis-example-app | grep urls | awk '{print $2}')/foo
