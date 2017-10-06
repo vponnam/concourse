@@ -1,5 +1,5 @@
 #!/bin/bash
-set -xe
+set -e
 export TERM=xterm
 
 #sample apps
