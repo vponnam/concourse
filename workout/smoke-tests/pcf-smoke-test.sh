@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 export TERM=xterm
+curl --version
+apt-get upgrade curl -y
 
 #sample apps
 mkdir onetime-directory

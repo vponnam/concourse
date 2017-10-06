@@ -4,7 +4,7 @@ resources:
   type: git
   source:
     uri: https://github.com/vponnam/concourse.git
-    branch: master
+    branch: new
 
 - name: alert
   type: email
