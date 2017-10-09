@@ -1,11 +1,9 @@
 ---
 resources:
-resources:
 - name: src
   type: git
   source:
     uri: https://github.com/vponnam/concourse.git
-    branch: load
 
 jobs:
 - name: endpoind-1
