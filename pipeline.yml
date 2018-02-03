@@ -18,7 +18,7 @@ resources:
 
 - name: scheduler
   type: time
-  source: {interval: 360m}
+  source: {interval: 60m}
 
 resource_types:
 - name: email
@@ -32,14 +32,22 @@ jobs:
   - get: scheduler
     trigger: true
   - get: src
-  - task: smoke-test
-    file: src/workout/smoke-tests/pcf-smoke-test.yml
+  - task: task-create
+    file: src/workout/smoke-tests/create.yml
     params:
       user: {{cf-user}}
       pwd: {{cf-pwd}}
       sys: {{cf-sys}}
       org: {{cf-org}}
       sn: {{cf-space}}
+  - task: task-bindit
+    file: src/workout/smoke-tests/bind.yml
+    params:
+      user: {{cf-user}}
+      pwd: {{cf-pwd}}
+      sys: {{cf-sys}}
+      org: {{cf-org}}
+      sn: {{cf-space}}     
     on_success:
       do:
       - task: notification-content
