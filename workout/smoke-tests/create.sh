@@ -1,7 +1,27 @@
 #!/bin/bash
 set -e
 
+#sample apps
+mkdir onetime-directory
+cd onetime-directory
+pwd
+git clone https://github.com/vponnam/traveler.git
+cd traveler
+./gradlew build
+cd ..
+dir=`pwd`
+
+#environment specs
+p2=$dir/traveler/agency/
+p3=$dir/traveler/company/
+
 cf login -a https://api.$sys -u $user -p $pwd -o $org -s $sn --skip-ssl-validation
+
+  cd $p2
+  cf push
+  sleep 2
+  cd $p3
+  cf push
 
 # Get circuit-breaker instances
 cf s | grep p-circuit-breaker-dashboard | awk '{print $1}' > instances
