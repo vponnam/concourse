@@ -45,7 +45,7 @@ do
   echo -n "*"
 done
 
-# If create succeded, then delete any existing failed instances - because any scs broker issue should've got resolved by now
+# If create succedes, then delete any existing failed instances - because any scs broker issue should've got resolved by now
 for j in $(cf s | grep p-circuit-breaker-dashboard | awk '{print $1}')
 do
   if [[ `cf service $j | grep -c "succeeded"` -eq 1 ]];
@@ -53,7 +53,7 @@ do
   printf "\ncircuit-breaker-$id Successfully created!!. So deleting any previously failed instances\n"
     for j in $(cat instances)
     do
-      cf ds $i
+      cf ds $i -f
     done
   fi
 done
