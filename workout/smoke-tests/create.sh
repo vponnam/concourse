@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+export TERM=xterm
 
 #sample apps
 mkdir onetime-directory

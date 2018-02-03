@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+export TERM=xterm
 
 cf login -a https://api.$sys -u $user -p $pwd -o $org -s $sn --skip-ssl-validation
 
