@@ -17,10 +17,9 @@ p2=$dir/traveler/agency/
 p3=$dir/traveler/company/
 
 cf login -a https://api.$sys -u $user -p $pwd -o $org -s $sn --skip-ssl-validation
-
   cd $p2
   cf push
-  sleep 2
+  sleep 3
   cd $p3
   cf push
 
@@ -52,7 +51,7 @@ do
   if [[ `cf service $j | grep -c "succeeded"` -eq 1 ]];
   then
   printf "\ncircuit-breaker-$id Successfully created!!. So deleting any previously failed instances\n"
-    for j in $(cat instances)
+    for i in $(cat instances)
     do
       cf ds $i -f
     done
