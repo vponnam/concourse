@@ -24,3 +24,4 @@ cf restage company
 # clean-up
 cf us agency $circuitBreaker
 cf us company $circuitBreaker
+cf ds $circuitBreaker -f

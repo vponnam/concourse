@@ -50,10 +50,10 @@ for j in $(cf s | grep p-circuit-breaker-dashboard | awk '{print $1}')
 do
   if [[ `cf service circuit-breaker-$id | grep -c "succeeded"` -eq 1 ]];
   then
-  printf "\ncircuit-breaker-$id Successfully created!!. So deleting any previously failed instances\n"
-    for i in $(cat instances)
-    do
-      cf ds $i -f
-    done
+    printf "\ncircuit-breaker-$id Successfully created!!, ***So deleted any failed instances frim previous failed builds now***\n"
+      for i in $(cat instances)
+      do
+        cf ds $i -f
+      done
   fi
 done
