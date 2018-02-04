@@ -38,7 +38,7 @@ done
 
 # Create a new instance
 printf "\n******Attempting to create a new instance******\n"
-id=$(( RANDOM % (100 - 37 + 1 ) + 5 ))
+id=$(( RANDOM % (9999 - 37 + 1 ) + 54 ))
 cf cs p-circuit-breaker-dashboard standard circuit-breaker-$id
 until [ `cf service circuit-breaker-$id | grep -c "progress"` -eq 0 ];
 do
