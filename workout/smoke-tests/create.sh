@@ -38,7 +38,7 @@ done
 
 # Create a new instance
 printf "\n******Attempting to create a new instance******\n"
-id=$(($id*2))
+id=$$
 cf cs p-circuit-breaker-dashboard standard circuit-breaker-$id
 until [ `cf service circuit-breaker-$id | grep -c "progress"` -eq 0 ];
 do
