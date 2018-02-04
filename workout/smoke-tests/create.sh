@@ -23,11 +23,10 @@ cf login -a https://api.$sys -u $user -p $pwd -o $org -s $sn --skip-ssl-validati
   cd $p3
   cf push
 
-# Get circuit-breaker instances
+# Get all existing circuit-breaker instances, if any!
 cf s | grep p-circuit-breaker-dashboard | awk '{print $1}' > instances
-id=$(cat instances | wc -l)
 
-# echo any failed instace names for tracking
+# echo any existing create-failed instaces just for tracking
 for i in $(cat instances)
 do
   if [[ `cf service $i | grep -c "succeeded"` -eq 0 ]];
@@ -36,7 +35,7 @@ do
   fi
 done
 
-# Create a new instance
+# Create a new instance with a random id
 printf "\n******Attempting to create a new instance******\n"
 id=$(( RANDOM % (9999 - 37 + 1 ) + 54 ))
 cf cs p-circuit-breaker-dashboard standard circuit-breaker-$id
@@ -45,15 +44,12 @@ do
   echo -n "*"
 done
 
-# If create succedes, then delete any existing failed instances - because any scs broker issue should've got resolved by now
-for j in $(cf s | grep p-circuit-breaker-dashboard | awk '{print $1}')
-do
-  if [[ `cf service circuit-breaker-$id | grep -c "succeeded"` -eq 1 ]];
-  then
-    printf "\ncircuit-breaker-$id Successfully created!!, ***So deleted any failed instances frim previous failed builds now***\n"
-      for i in $(cat instances)
-      do
-        cf ds $i -f
-      done
-  fi
-done
+# Check if create succeeded, and then delete any existing failed instances - create is an indication of any scs issue getting resolved by now!
+if [[ `cf service circuit-breaker-$id | grep -c "succeeded"` -eq 1 ]];
+then
+  printf "\ncircuit-breaker-$id Successfully created!!, ***So deleted any failed instances from previous failed builds now***\n"
+    for i in $(cat instances)
+    do
+      cf ds $i -f
+    done
+fi
