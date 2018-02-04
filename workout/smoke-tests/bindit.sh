@@ -24,7 +24,3 @@ cf restage company
 # clean-up
 cf us agency $circuitBreaker
 cf us company $circuitBreaker
-
-cf delete agency -f
-cf delete company -f
-cf delete $circuitBreaker -f
