@@ -47,7 +47,7 @@ done
 # Check if create succeeded, and then delete any existing failed instances - create is an indication of any scs issue getting resolved by now!
 if [[ `cf service circuit-breaker-$id | grep -c "succeeded"` -eq 1 ]];
 then
-  printf "\ncircuit-breaker-$id Successfully created!!, ***So deleted any failed instances from previous failed builds now***\n"
+  printf "\ncircuit-breaker-$id Successfully created!!, ***So deleting any unhealthy instances from previous failed builds***\n"
     for i in $(cat instances)
     do
       cf ds $i -f
