@@ -10,18 +10,27 @@ do
   if [[ `cf service $instance | grep -c "succeeded"` -eq 1 ]];
   then
     circuitBreaker=$instance
-  printf "\nFound this healthy instance: $instance.\n"
+    printf "\nFound this healthy instance: $instance.\n"
+
+    #Good to proceed with bind and other tasks
+    cf bs agency $circuitBreaker
+    cf bs company $circuitBreaker
+
+    cf restage agency
+    cf restage company
+
+    #Above tests completed successfully. So performaing a clean-up now!
+    cf us agency $circuitBreaker
+    cf us company $circuitBreaker
+    cf ds $circuitBreaker -f
+
+  else
+    printf "\nThere isn't any helathy instace found, So gotta exit..\n"
+    exit 1
   fi
 done
 
-# Binding task: Using the healthy circuit-breaker instance for binding
-cf bs agency $circuitBreaker
-cf bs company $circuitBreaker
 
-cf restage agency
-cf restage company
+
 
 # clean-up
-cf us agency $circuitBreaker
-cf us company $circuitBreaker
-cf ds $circuitBreaker -f
