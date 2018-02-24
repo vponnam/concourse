@@ -1,0 +1,85 @@
+---
+resources:
+- name: src
+  type: git
+  source:
+    uri: https://github.com/vponnam/concourse.git
+    branch: asg
+
+- name: alert
+  type: email
+  source:
+    smtp:
+      host: {{smtp-host}}
+      port: {{smtp-port}}
+      username: {{smtp-username}}
+      password: {{smtp-password}}
+    from: {{email-from}}
+    to: [ {{email-to}} ]
+
+resource_types:
+- name: email
+  type: docker-image
+  source:
+    repository: pcfseceng/email-resource
+
+jobs:
+- name: asg-pipeline
+  plan:
+  - get: src
+    trigger: true
+  - task: smoke-test
+    file: src/workout/asg/asg.yml
+    params:
+      sysdomain: {{sys-domain}} 
+      apiversion: {{apiversion}}
+      uaaclientid: {{uaaclientid}}
+      uaasecret: {{uaasecret}}
+      asgfile: {{asgfile}}
+      skipssl: {{skipssl}}
+    on_success:
+      do:
+      - task: notification-content
+        config:
+          platform: linux
+          inputs:
+          - name: src
+          outputs:
+          - name: content
+          image_resource:
+            type: docker-image
+            source: {repository: busybox}
+          run:
+            path: sh
+            args:
+            - -exc
+            - |
+              echo "PCF ASG's applied Successfully..!" >> content/notification_subject.txt
+              echo "Successfully completed executing platform ASG pipeline" >> content/notification_body.txt
+      - put: alert
+        params:
+          subject: content/notification_subject.txt
+          body: content/notification_body.txt
+    on_failure:
+      do:
+      - task: notification-content
+        config:
+          platform: linux
+          inputs:
+          - name: src
+          outputs:
+          - name: content
+          image_resource:
+            type: docker-image
+            source: {repository: busybox}
+          run:
+            path: sh
+            args:
+            - -exc
+            - |
+              echo "Applying ASG's Failed..!" >> content/notification_subject.txt
+              echo "Failed applying ASG's. Please check the build output" >> content/notification_body.txt
+      - put: alert
+        params:
+          subject: content/notification_subject.txt
+          body: content/notification_body.txt
