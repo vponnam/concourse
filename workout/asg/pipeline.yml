@@ -31,7 +31,7 @@ jobs:
   - task: smoke-test
     file: src/workout/asg/asg.yml
     params:
-      sysdomain: {{sys-domain}} 
+      sysdomain: {{sysdomain}} 
       apiversion: {{apiversion}}
       uaaclientid: {{uaaclientid}}
       uaasecret: {{uaasecret}}
