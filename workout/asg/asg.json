@@ -5,7 +5,7 @@
     {
       "metadata": {
         "org_details": [
-          {"org": "vponnam", "space": [{"name": "dev"},{"name": "prod"}]},
+          {"org": "vponnam", "space": [{"name": "dev"},{"name": "qa"}]},
           {"org": "services", "space": [{"name": "service-dev"}]}
         ]
       },
