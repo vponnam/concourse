@@ -28,7 +28,7 @@ jobs:
   plan:
   - get: src
     trigger: true
-  - task: smoke-test
+  - task: Run-ASG-Tool
     file: src/workout/asg/asg.yml
     params:
       sysdomain: {{sysdomain}} 
