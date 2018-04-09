@@ -15,12 +15,14 @@
         {
           "protocol": "all",
           "destination": "10.0.0.10",
+          "log": true,
           "description": "Allow access to mysql server"
         },
         {
           "protocol": "udp",
           "destination": "8.8.8.8",
           "ports": "53",
+          "log": true
           "description": "Allow access to public dns server"
         }
       ]
@@ -37,6 +39,7 @@
       "rules": [
         {
           "protocol": "all",
+          "log": true,
           "destination": "10.0.0.20-10.0.0.25"
         }
       ]
@@ -67,7 +70,8 @@
         {
     			"destination": "0.0.0.0-169.253.255.255",
     			"protocol": "tcp",
-                        "ports": "80,443"
+                        "ports": "80,443",
+                        "log": true
     		},
     		{
     			"destination": "169.255.0.0-255.255.255.255",
