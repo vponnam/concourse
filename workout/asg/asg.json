@@ -22,7 +22,7 @@
           "protocol": "udp",
           "destination": "8.8.8.8",
           "ports": "53",
-          "log": true
+          "log": true,
           "description": "Allow access to public dns server"
         }
       ]
