@@ -1,0 +1,13 @@
+smtp-host: smtp.company.com
+smtp-port: "587"
+smtp-username: user
+smtp-password: password
+email-from: sender's-email
+email-to: "Reciever's-email"
+
+sysdomain: sys-domain  Ex: sys.cf.mycompany.com
+apiversion: v2  #API version
+uaaclientid: admin
+uaasecret: password
+asgfile: src/workout/asg/asg.json
+skipssl: false
