@@ -8,5 +8,8 @@ image_resource:
 inputs:
 - name: src
 
+outputs:
+- name: updated-src
+
 run:
   path: src/workout/asg/merge-asg.sh
