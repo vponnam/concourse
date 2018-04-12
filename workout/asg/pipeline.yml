@@ -28,62 +28,58 @@ jobs:
   plan:
   - get: src
     trigger: true
-  - task: merge-json
-    file: src/workout/asg/asg-merge.yml
+  - task: apply-state
+    file: src/workout/asg/asg.yml
+    params:
+      sysdomain: {{sysdomain}}
+      apiversion: {{apiversion}}
+      uaaclientid: {{uaaclientid}}
+      uaasecret: {{uaasecret}}
+      asgfile: {{asgfile}}
+      skipssl: {{skipssl}}
     on_success:
       do:
-      - task: apply-state
-        file: src/workout/asg/asg.yml
+      - task: notification-content
+        config:
+          platform: linux
+          inputs:
+            - name: src
+          outputs:
+            - name: content
+          image_resource:
+            type: docker-image
+            source: {repository: busybox}
+          run:
+            path: sh
+            args:
+            - -exc
+            - |
+              echo "PCF ASG's applied Successfully..!" >> content/notification_subject.txt
+              echo "Successfully completed executing platform ASG pipeline" >> content/notification_body.txt
+      - put: alert
         params:
-          sysdomain: {{sysdomain}}
-          apiversion: {{apiversion}}
-          uaaclientid: {{uaaclientid}}
-          uaasecret: {{uaasecret}}
-          asgfile: {{asgfile}}
-          skipssl: {{skipssl}}
-        on_success:
-          do:
-          - task: notification-content
-            config:
-              platform: linux
-              inputs:
-                - name: src
-              outputs:
-                - name: content
-              image_resource:
-                type: docker-image
-                source: {repository: busybox}
-              run:
-                path: sh
-                args:
-                - -exc
-                - |
-                  echo "PCF ASG's applied Successfully..!" >> content/notification_subject.txt
-                  echo "Successfully completed executing platform ASG pipeline" >> content/notification_body.txt
-          - put: alert
-            params:
-              subject: content/notification_subject.txt
-              body: content/notification_body.txt
-        on_failure:
-          do:
-          - task: notification-content
-            config:
-              platform: linux
-              inputs:
-                - name: src
-              outputs:
-                - name: content
-              image_resource:
-                type: docker-image
-                source: {repository: busybox}
-              run:
-                path: sh
-                args:
-                - -exc
-                - |
-                  echo "Applying ASG's Failed..!" >> content/notification_subject.txt
-                  echo "Failed applying ASG's. Please check the build output" >> content/notification_body.txt
-          - put: alert
-            params:
-              subject: content/notification_subject.txt
-              body: content/notification_body.txt
+          subject: content/notification_subject.txt
+          body: content/notification_body.txt
+    on_failure:
+      do:
+      - task: notification-content
+        config:
+          platform: linux
+          inputs:
+            - name: src
+          outputs:
+            - name: content
+          image_resource:
+            type: docker-image
+            source: {repository: busybox}
+          run:
+            path: sh
+            args:
+            - -exc
+            - |
+              echo "Applying ASG's Failed..!" >> content/notification_subject.txt
+              echo "Failed applying ASG's. Please check the build output" >> content/notification_body.txt
+      - put: alert
+        params:
+          subject: content/notification_subject.txt
+          body: content/notification_body.txt

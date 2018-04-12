@@ -7,7 +7,6 @@ image_resource:
 
 inputs:
 - name: src
-- name: updated-src
 
 run:
   path: src/workout/asg/apply-asg.sh
