@@ -34,6 +34,7 @@ jobs:
   plan:
   - get: src
     passed: [asg-merger]
+    trigger: true
   - task: apply-state-module
     file: src/workout/asg/asg.yml
     params:
