@@ -1,0 +1,23 @@
+{
+  "environment": "Lab",
+  "api": "api.run-20.haas-59.pez.pivotal.io",
+  "resources": [
+    {
+      "metadata": {
+        "org_details": [
+          {"org":"ci-tests", "spaces":[{"name": "dev"}]},
+          {"org": "test", "spaces": [{"name":"dev"}]}
+        ]
+      },
+      "entity": {
+        "name": "ci-tests_security_group",
+        "rules": [
+          {
+            "protocol": "all",
+            "destination": "10.0.0.20-10.0.0.25"
+          }
+        ]
+      }
+    }
+  ]
+}

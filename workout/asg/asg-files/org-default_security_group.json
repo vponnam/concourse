@@ -1,0 +1,33 @@
+{
+  "environment": "Lab",
+  "api": "api.run-20.haas-59.pez.pivotal.io",
+  "resources": [
+  {
+    "metadata": {},
+    "entity": {
+      "name": "default_security_group",
+      "rules": [
+        {
+    	"destination": "0.0.0.0-169.253.255.255",
+    	"protocol": "tcp",
+        "ports": "80,443",
+        "description": "Test"
+    	},
+    	{
+    	"destination": "169.255.0.0-255.255.255.255",
+    	"protocol": "tcp",
+        "ports": "80,443",
+        "description": "test"
+    	},
+        {
+          "protocol": "icmp",
+          "destination": "0.0.0.0/0",
+          "type": 0,
+          "code": 1,
+          "description": "Allow access to icmp servers"
+        }
+      ]
+    }
+  }
+]
+}

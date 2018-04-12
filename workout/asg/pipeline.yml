@@ -24,14 +24,20 @@ resource_types:
     repository: pcfseceng/email-resource
 
 jobs:
-- name: asg-pipeline
+- name: asg-merger
   plan:
   - get: src
     trigger: true
-  - task: Run-ASG-Tool
+  - task: merge-json-module
+    file: src/workout/asg/asg-merge.yml
+- name: asg-apply-state
+  plan:
+  - get: src
+    passed: [asg-merger]
+  - task: apply-state-module
     file: src/workout/asg/asg.yml
     params:
-      sysdomain: {{sysdomain}} 
+      sysdomain: {{sysdomain}}
       apiversion: {{apiversion}}
       uaaclientid: {{uaaclientid}}
       uaasecret: {{uaasecret}}
