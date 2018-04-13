@@ -25,6 +25,11 @@
           "type": 0,
           "code": 1,
           "description": "Allow access to icmp servers"
+        },
+        {
+          "protocol": "all",
+          "destination": "10.193.85.0/24",
+          "description": "Allow access to PCF internal services"
         }
       ]
     }
