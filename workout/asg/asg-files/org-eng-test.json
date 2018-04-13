@@ -5,7 +5,7 @@
     {
       "metadata": {
         "org_details": [
-          {"org":"eng-test", "spaces":[{"name": "dev"}]},
+          {"org":"eng-test", "spaces":[{"name": "dev"}]}
         ]
       },
       "entity": {
