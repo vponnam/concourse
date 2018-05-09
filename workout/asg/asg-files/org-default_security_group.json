@@ -5,7 +5,7 @@
   {
     "metadata": {},
     "entity": {
-      "name": "default_security_group",
+      "name": "default_security_grou",
       "rules": [
         {
     	"destination": "0.0.0.0-169.253.255.255",
