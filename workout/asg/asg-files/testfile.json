@@ -1,0 +1,1 @@
+{"api":"api.","resources":[{"metadata":{"org_details":[{"org":"test","spaces":[{"name":"dev"}]}]},"entity":{"name":"test-ASG-for-1spaces","rules":[{"protocol":"tcp","destination":"192.168.1.10","ports":"3306","description":"rule1","log":true}]}}]}
