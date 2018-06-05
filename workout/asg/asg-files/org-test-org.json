@@ -1,0 +1,1 @@
+{"api":"api.run-20.haas-59.pez.pivotal.io","resources":[{"metadata":{"org_details":[{"org":"test-org","spaces":[{"name":"dev"}]}]},"entity":{"name":"test-org-ASG-for-1spaces","rules":[{"protocol":"udp","destination":"192.168.1.0/28","ports":"3306","description":"rule testing","log":true}]}}]}
