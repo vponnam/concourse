@@ -1,1 +1,0 @@
-{"api":"api.run-20.haas-59.pez.pivotal.io","resources":[{"metadata":{"org_details":[{"org":"PCF-Ops-test","spaces":[{"name":"staging"}]}]},"entity":{"name":"PCF-Ops-test-ASG-for-1spaces","rules":[{"protocol":"udp","destination":"192.168.1.0/28","ports":"5514","description":"log relays Created by testid","log":true}]}}]}
