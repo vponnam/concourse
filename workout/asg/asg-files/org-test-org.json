@@ -1,1 +1,0 @@
-{"api":"api.run-20.haas-59.pez.pivotal.io","resources":[{"metadata":{"org_details":[{"org":"test-org","spaces":[{"name":"dev"}]}]},"entity":{"name":"test-org-ASG-for-1spaces","rules":[{"protocol":"udp","destination":"192.168.1.10-192.168.1.15","ports":"1422","description":"new rule created by testid","log":true}]}}]}
