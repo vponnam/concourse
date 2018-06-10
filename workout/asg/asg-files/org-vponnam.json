@@ -1,1 +1,0 @@
-{"api":"api.run-20.haas-59.pez.pivotal.io","resources":[{"metadata":{"org_details":[{"org":"vponnam","spaces":[{"name":""},{"name":""}]}]},"entity":{"name":"vponnam-ASG-for-2spaces","rules":[{"protocol":"udp","destination":"192.168.1.10","ports":"1212","description":"test the rule. Created by test23","log":true}]}}]}
