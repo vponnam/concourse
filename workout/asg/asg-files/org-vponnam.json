@@ -1,0 +1,1 @@
+{"api":"api.run-20.haas-59.pez.pivotal.io","resources":[{"metadata":{"org_details":[{"org":"vponnam","spaces":[{"name":"dev"},{"name":"qa"},{"name":"prod"}]}]},"entity":{"name":"vponnam-ASG-for-Allspaces","rules":[{"protocol":"udp","destination":"192.168.1.11","ports":"53","description":"testing Created by test23","log":true}]}}]}
