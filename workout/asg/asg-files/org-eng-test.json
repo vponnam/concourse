@@ -1,0 +1,1 @@
+{"api":"api.run-20.haas-59.pez.pivotal.io","resources":[{"metadata":{"org_details":[{"org":"eng-test","spaces":[{"name":"dev"}]}]},"entity":{"name":"eng-test-ASG-for-Allspaces","rules":[{"protocol":"tcp","destination":"192.168.1.10","ports":"1422","description":"testing. Created by cloudfoundrytech@gmail.com","log":true}]}}]}
