@@ -3,7 +3,7 @@ set -e
 export TERM=xterm
 
 #merge individual json files
-jq 'reduce inputs as $i (.; .resources += $i.resources)' src/workout/asg/asg-files/org-*.json > src/workout/asg/mergedasg.json
+jq 'reduce inputs as $i (.; .resources += $i.resources)' src/workout/asg/haas-59/org-*.json > src/workout/asg/mergedasg.json
 
 #execute the go-binary
 if [[ $? = 0 ]]
