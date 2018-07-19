@@ -1,1 +1,0 @@
-{"api":"https://api.run-20.haas-59.pez.pivotal.io","resources":[{"metadata":{"org_details":[{"org":"eng-test","spaces":[{"name":"dev"},{"name":"qa"}]}]},"entity":{"name":"my-test-asg","rules":[{"protocol":"tcp","destination":"10.1.0.23-10.1.0.37","ports":"3306","description":"My ##### and rule for sql server.. Created by ssotest3. Updated by ssotest3","log":true}]}}]}
