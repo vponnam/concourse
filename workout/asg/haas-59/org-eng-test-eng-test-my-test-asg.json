@@ -1,0 +1,1 @@
+{"api":"https://api.run-20.haas-59.pez.pivotal.io","resources":[{"metadata":{"org_details":[{"org":"eng-test","spaces":[{"name":"qa"},{"name":"test-it"}]}]},"entity":{"name":"eng-test-my-test-asg","rules":[{"protocol":"tcp","destination":"10.1.0.0/28","ports":"3306","description":"all DC's sql servers. Created by ssotest3","log":true}]}}]}
