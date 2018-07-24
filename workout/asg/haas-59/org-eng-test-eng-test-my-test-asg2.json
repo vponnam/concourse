@@ -1,1 +1,0 @@
-{"api":"https://api.run-20.haas-59.pez.pivotal.io","resources":[{"metadata":{"org_details":[{"org":"eng-test","spaces":[{"name":"qa"}]}]},"entity":{"name":"eng-test-my-test-asg2","rules":[{"protocol":"tcp","destination":"192.168.1.10","ports":"3306","description":"special port. Created by ssotest3","log":true}]}}]}
