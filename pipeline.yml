@@ -5,26 +5,9 @@ resources:
   source:
     uri: https://github.com/vponnam/concourse.git
 
-- name: alert
-  type: email
-  source:
-    smtp:
-      host: {{smtp-host}}
-      port: {{smtp-port}}
-      username: {{smtp-username}}
-      password: {{smtp-password}}
-    from: {{email-from}}
-    to: [ {{email-to}} ]
-
 - name: scheduler
   type: time
   source: {interval: 60m}
-
-resource_types:
-- name: email
-  type: docker-image
-  source:
-    repository: pcfseceng/email-resource
 
 jobs:
 - name: pcf-smoke-tests
@@ -40,57 +23,3 @@ jobs:
       sys: {{cf-sys}}
       org: {{cf-org}}
       sn: {{cf-space}}
-  - task: task-bindit
-    file: src/workout/smoke-tests/bind.yml
-    params:
-      user: {{cf-user}}
-      pwd: {{cf-pwd}}
-      sys: {{cf-sys}}
-      org: {{cf-org}}
-      sn: {{cf-space}}     
-    on_success:
-      do:
-      - task: notification-content
-        config:
-          platform: linux
-          inputs:
-          - name: src
-          outputs:
-          - name: content
-          image_resource:
-            type: docker-image
-            source: {repository: busybox}
-          run:
-            path: sh
-            args:
-            - -exc
-            - |
-              echo "PCF Smoke-test is Successful..!" >> content/notification_subject.txt
-              echo "Successfully completed platform smoke-test" >> content/notification_body.txt
-      - put: alert
-        params:
-          subject: content/notification_subject.txt
-          body: content/notification_body.txt
-    on_failure:
-      do:
-      - task: notification-content
-        config:
-          platform: linux
-          inputs:
-          - name: src
-          outputs:
-          - name: content
-          image_resource:
-            type: docker-image
-            source: {repository: busybox}
-          run:
-            path: sh
-            args:
-            - -exc
-            - |
-              echo "Smoke-test Failed..!" >> content/notification_subject.txt
-              echo "Failed running complete-smoke-status; ********Something is broken******** " >> content/notification_body.txt
-      - put: alert
-        params:
-          subject: content/notification_subject.txt
-          body: content/notification_body.txt

@@ -9,4 +9,4 @@ inputs:
 - name: src
 
 run:
-  path: src/workout/smoke-tests/create.sh
+  path: src/workout/smoke-tests/pcf-smoke-test.sh
