@@ -136,6 +136,13 @@ fi
 printf "\nStarted testing Redis Service"
 i5=redis
 cf cs p.redis 7gb $i5
+until [ `cf service $i5 | grep -c "progress"` -eq 0 ]; do echo -n "*"
+done
+if [[ `cf service $i5 | grep -c "failed"` -eq 1 ]]; then printf "\noops..! failed creating redis-on-demand service instance\n"; exit 1;
+fi
+if [[ `cf service $i5 | grep -c "succeeded"` -eq 1 ]]; then printf "\nsuccessfully created redis-on-demand service instance\n"
+  cf service $i5
+fi
 cf bs redis-example-app $i5
 cf start redis-example-app
 cf app redis-example-app
