@@ -86,7 +86,7 @@ fi
 
 # Test on-demand rabbitmq service
 i6=rmq
-cf cs p.rabbitmq single-node-3.7 $i6
+cf cs p.rabbitmq single-node $i6
 until [ `cf service $i6 | grep -c "progress"` -eq 0 ]; do echo -n "*"
 done
 if [[ `cf service $i6 | grep -c "failed"` -eq 1 ]]; then printf "\noops..! failed creating Rabbitmq service instance\n"; exit 1;
