@@ -31,25 +31,25 @@ These container's lifetime is only valid until task execution time (which will t
 On a single worker node, there can be as many containers that can be executed at scale until the VM resource limit has reached. This will enable the functionality of running multiple pipeline jobs at the same time for concurrent tasks.  
 ### Custom workloads
 Any linux based docker image can be deployed for executing the task. The image can be from public or private docker registry. Good thing is that the image itself can be created with any runtime dependencies (Hopefully something that's trustable or our company approved) and this completely eliminates the legacy dependencies management for all workloads run on a common VM.  
-[Here](concourse/workout/1job-2tasks/task1.yml) is a quick example to get an basic idea of image config in concourse.
+[Here](workout/1job-2tasks/task1.yml) is a quick example to get an basic idea of image config in concourse.
 
 # Cloudfoundry and Concourse
 Automating cloud foundry deployments and/or day-to-day tasks using concourse is a deadly combination. The rich set of functionalities credential management greatly helps avoid passing plain text fields across tasks, jobs.  
 
 ## Basic pipeline  
-Step 1: Look at the pipeline structure [here](concourse/workout/1job-2tasks/basic-pipeline.yml)  
+Step 1: Look at the pipeline structure [here](workout/1job-2tasks/basic-pipeline.yml)  
 We have resources and jobs section. Resources section points to the configurational related items and it tells concourse the type of resource, for example: github is a resource type which stores all the task configurational details (such as a bash script, some code.. etc). Jobs section defines the sequence of tasks that we intend to execute.  
 Step 2: Job tasks  
 - Task config  
-Task config is the configuration that will define the type of docker image the task has to use and input files and output files. Input files are like github repo that has all the code that we intend to execute, Output files are for passing the output from previous task as a dependency for next task. [Here](concourse/workout/1job-2tasks/task1.yml) is a example task config yml file.  
+Task config is the configuration that will define the type of docker image the task has to use and input files and output files. Input files are like github repo that has all the code that we intend to execute, Output files are for passing the output from previous task as a dependency for next task. [Here](workout/1job-2tasks/task1.yml) is a example task config yml file.  
 
 - Task script
-The actual script to be executed. [Here](concourse/workout/1job-2tasks/task1.sh) is a example task script.  
+The actual script to be executed. [Here](workout/1job-2tasks/task1.sh) is a example task script.  
 
 Executing the pipeline in a concourse environment:    
 1. login and setup your fly target as mentioned [here](https://concourse-ci.org/fly.html#fly-login)
 2. git clone git@github.com:vponnam/concourse.git && cd concourse
-3. Make sure to add cf-user and cf-pwd values in `sample-creds.yml` file and just fly it `fly -t <your-target> sp -p basic-pieline -c concourse/workout/1job-2tasks/task1.ymlbasic-pipeline.yml -l sample-creds.yml`  
+3. Make sure to add cf-user and cf-pwd values in `sample-creds.yml` file and just fly it `fly -t <your-target> sp -p basic-pieline -c workout/1job-2tasks/task1.ymlbasic-pipeline.yml -l sample-creds.yml`  
 
 After successful execution you should see a pipeline names basic-pieline in your concourse webUI, you can unpase it and trigger it by clicking `+` symbol at the top right corner.  
 
