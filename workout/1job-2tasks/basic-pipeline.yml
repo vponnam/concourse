@@ -1,0 +1,20 @@
+---
+resources:
+- name: configuration-source
+  type: git
+  source:
+    uri: https://github.com/vponnam/concourse.git
+
+jobs:
+- name: basic-pipeline-job
+  plan:
+  - get: task-scheduler
+    trigger: true
+  - get: configuration-source
+  - task: first-task
+    file: src/workout/1job-2tasks/task1.yml
+    params:
+      user: {{cf-user}}
+      passd: {{cf-pwd}}
+  - task: second-task
+    file: src/workout/1job-2tasks/task2.yml
